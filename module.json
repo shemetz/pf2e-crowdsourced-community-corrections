@@ -1,0 +1,89 @@
+{
+  "id": "pf2e-crowdsourced-community-corrections",
+  "title": "Pf2e Crowdsourced Community Corrections",
+  "description": "",
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11"
+  },
+  "esmodules": [
+    "scripts/pf2e-crowdsourced-community-corrections.js"
+  ],
+  "styles": [
+    "styles/pf2e-crowdsourced-community-corrections.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "flags": {
+    "pf2e-crowdsourced-community-corrections": {
+      "pf2e-homebrew": {
+        "creatureTraits": {
+          "pf2e-ccc-patched": {
+            "label": "(CCC patched)",
+            "description": "(This was permanently altered by the Pf2e Crowdsourced Community Corrections module.  To revert this alteration you'll need to update or reinstall your pf2e system.)"
+          }
+        },
+        "featTraits": {
+          "pf2e-ccc-patched": {
+            "label": "(CCC patched)",
+            "description": "(This was permanently altered by the Pf2e Crowdsourced Community Corrections module.  To revert this alteration you'll need to update or reinstall your pf2e system.)"
+          }
+        },
+        "spellTraits": {
+          "pf2e-ccc-patched": {
+            "label": "(CCC patched)",
+            "description": "(This was permanently altered by the Pf2e Crowdsourced Community Corrections module.  To revert this alteration you'll need to update or reinstall your pf2e system.)"
+          }
+        },
+        "weaponTraits": {
+          "pf2e-ccc-patched": {
+            "label": "(CCC patched)",
+            "description": "(This was permanently altered by the Pf2e Crowdsourced Community Corrections module.  To revert this alteration you'll need to update or reinstall your pf2e system.)"
+          }
+        },
+        "equipmentTraits": {
+          "pf2e-ccc-patched": {
+            "label": "(CCC patched)",
+            "description": "(This was permanently altered by the Pf2e Crowdsourced Community Corrections module.  To revert this alteration you'll need to update or reinstall your pf2e system.)"
+          }
+        }
+      }
+    }
+  },
+  "url": "https://github.com/shemetz/pf2e-crowdsourced-community-corrections",
+  "manifest": "https://github.com/shemetz/pf2e-crowdsourced-community-corrections/raw/master/module.json",
+  "download": "https://github.com/shemetz/pf2e-crowdsourced-community-corrections/archive/master.zip",
+  "readme": "https://github.com/shemetz/pf2e-crowdsourced-community-corrections/blob/master/Readme.md",
+  "changelog": "https://github.com/shemetz/pf2e-crowdsourced-community-corrections/blob/master/Changelog.md",
+  "license": "https://github.com/shemetz/pf2e-crowdsourced-community-corrections/blob/master/License.txt",
+  "bugs": "https://github.com/shemetz/pf2e-crowdsourced-community-corrections/issues",
+  "relationships": {
+    "systems": [
+      {
+        "id": "pf2e",
+        "type": "system",
+        "manifest": "https://github.com/foundryvtt/pf2e/releases/download/latest/system.json",
+        "compatibility": {
+          "minimum": "5.11.0",
+          "verified": "5.11.5"
+        }
+      }
+    ]
+  },
+  "authors": [
+    {
+      "name": "shemetz",
+      "email": "itamarcu+foundry@gmail.com",
+      "discord": "shemetz",
+      "reddit": "u/Shemetz"
+    }
+  ],
+  "manifestPlusVersion": "1.2.0",
+  "media": []
+}
