@@ -119,7 +119,7 @@ const patchObjectWithCorrections = async (patches) => {
             return errorNotification(`Field ${fieldKey} already has value ${value}`)
           patchUpdate[fieldKey] = jsonValue
           break
-        } else if (Number.isInteger(value)) {
+        } else if (Number.isInteger(value) || value.match(/^-?\d+$/)) {
           const intPattern = parseInt(pattern)
           const intValue = parseInt(value)
           if (originalValue !== intPattern)
