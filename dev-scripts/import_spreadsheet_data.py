@@ -53,10 +53,10 @@ def main():
             continue  # skip this correction
         created_json_list.append(json_obj)
         prev_obj = json_obj
-    created_json_list.sort(key=lambda x: x['confidence'], reverse=True)
-    created_json_list.sort(key=lambda x: x['fix_reliability'], reverse=True)
-    created_json_list.sort(key=lambda x: x['sorting_grouping'])
     created_json_list.sort(key=lambda x: x['name_or_header'])
+    created_json_list.sort(key=lambda x: x['sorting_grouping'])
+    created_json_list.sort(key=lambda x: x['fix_reliability'], reverse=True)
+    created_json_list.sort(key=lambda x: x['confidence'], reverse=True)
     print(f"Saving... ({len(created_json_list)} corrections)")
     js_file_path = "../scripts/generatedCorrections.js"
     with open(js_file_path, 'w') as js_file:
