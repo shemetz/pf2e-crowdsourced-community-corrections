@@ -474,7 +474,7 @@ export const allGeneratedCorrections = [
     "proposed_fix": "Replace \"three attacks\" with \"attacks\"",
     "fix_reliability": 4,
     "fix_commentary": "",
-    "discussion_link": "https://paizo.com/threads/rzs43vmi?Magnetic-Pinions-Can-You-Target-1-Enemy-with\n\nhttps://www.reddit.com/r/Pathfinder2e/comments/16e8kpk/help_with_magnetic_pinions/ ",
+    "discussion_link": "https://paizo.com/threads/rzs43vmi?Magnetic-Pinions-Can-You-Target-1-Enemy-with\nhttps://www.reddit.com/r/Pathfinder2e/comments/16e8kpk/help_with_magnetic_pinions/ ",
     "additional_comments": "",
     "module_uuid": "Compendium.pf2e.feats-srd.Item.IAo6UeLgWqG7KK1x",
     "module_action": "FIND_AND_REPLACE",
@@ -762,7 +762,7 @@ export const allGeneratedCorrections = [
     "fix_commentary": "probably 6d6 or 7d6 fire damage, comparing Ceustodaemon and Young White Dragon",
     "discussion_link": "https://paizo.com/threads/rzs431rh?Bestiary-2-is-Fantastic#14",
     "additional_comments": "",
-    "module_uuid": "\"Compendium.pf2e.pathfinder-bestiary-2.Actor.RUdP7qWg6pnKrPnh.Item.up0HVVMUk86V0DdT",
+    "module_uuid": "Compendium.pf2e.pathfinder-bestiary-2.Actor.RUdP7qWg6pnKrPnh.Item.up0HVVMUk86V0DdT",
     "module_action": "FIND_AND_REPLACE",
     "module_field_key": "system.description.value",
     "module_pattern": "must attempt a @Check[type:reflex|dc:24|basic:true] save",
@@ -1050,7 +1050,7 @@ export const allGeneratedCorrections = [
     "additional_comments": "",
     "module_uuid": "Compendium.pf2e.equipment-srd.Item.i8UuRf5yLztt43TN",
     "module_action": "FIND_AND_REPLACE",
-    "module_field_key": "system.actions.value",
+    "module_field_key": "system.description.value",
     "module_pattern": ">R<",
     "module_value": ">F<",
     "module_comment": ""
@@ -1072,7 +1072,7 @@ export const allGeneratedCorrections = [
     "additional_comments": "",
     "module_uuid": "Compendium.pf2e.equipment-srd.Item.Ruul32xBBYYVwFHC",
     "module_action": "FIND_AND_REPLACE",
-    "module_field_key": "system.actions.value",
+    "module_field_key": "system.description.value",
     "module_pattern": ">R<",
     "module_value": ">F<",
     "module_comment": ""
@@ -1094,7 +1094,7 @@ export const allGeneratedCorrections = [
     "additional_comments": "",
     "module_uuid": "Compendium.pf2e.equipment-srd.Item.AXewacUHP6rs980k",
     "module_action": "FIND_AND_REPLACE",
-    "module_field_key": "system.actions.value",
+    "module_field_key": "system.description.value",
     "module_pattern": ">R<",
     "module_value": ">F<",
     "module_comment": ""
@@ -1293,8 +1293,8 @@ export const allGeneratedCorrections = [
     "module_uuid": "Compendium.pf2e.spells-srd.Item.jfVCuOpzC6mUrf6f",
     "module_action": "FIND_AND_REPLACE",
     "module_field_key": "system.description.value",
-    "module_pattern": "<p>You call forth a powerful blast of pressurized water that bludgeons the target and knocks it back. Make a ranged spell attack roll.</p>\n<hr>\n<p><strong>Critical Success</strong> The target takes 6d6 bludgeoning damage and is knocked back 10 feet.</p>\n<p><strong>Success</strong> The target takes 3d6 bludgeoning damage and is knocked back 5 feet.</p>",
-    "module_value": "<p>You call forth a powerful blast of pressurized water that deals 3d6 bludgeoning damage and knocks the target back. Make a ranged spell attack roll.</p>\n<hr>\n<p><strong>Critical Success</strong> The target takes double damage and is knocked back 10 feet.</p>\n<p><strong>Success</strong> The target takes full damage and is knocked back 5 feet.</p>",
+    "module_pattern": "<p>You call forth a powerful blast of pressurized water that bludgeons the target and knocks it back. Make a ranged spell attack roll.</p>\n<hr />\n<p><strong>Critical Success</strong> The target takes 6d6 bludgeoning damage and is knocked back 10 feet.</p>\n<p><strong>Success</strong> The target takes 3d6 bludgeoning damage and is knocked back 5 feet.</p>",
+    "module_value": "<p>You call forth a powerful blast of pressurized water that deals 3d6 bludgeoning damage and knocks the target back. Make a ranged spell attack roll.</p>\n<hr />\n<p><strong>Critical Success</strong> The target takes double damage and is knocked back 10 feet.</p>\n<p><strong>Success</strong> The target takes full  damage and is knocked back 5 feet.</p>",
     "module_comment": "a bit ugly"
   },
   {
@@ -1315,8 +1315,8 @@ export const allGeneratedCorrections = [
     "module_uuid": "Compendium.pf2e.spells-srd.Item.8lZhUreL1bRk1v4Z",
     "module_action": "FIND_AND_REPLACE",
     "module_field_key": "system.description.value",
-    "module_pattern": "<p>You hurl a bolt of saltwater from your extended hand. Make a ranged spell attack against a target within range.</p>\n<hr>\n<p><strong>Critical Success</strong> The creature takes 4d6 bludgeoning damage and is @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Blinded} for 1 round and @UUID[Compendium.pf2e.conditionitems.Item.TkIyaNPgTZFBCCuh]{Dazzled} for 1 minute as saltwater sprays into its eyes. The creature can spend an Interact action to rub its eyes and end the blinded condition, but not the dazzled condition.</p>\n<p><strong>Success</strong> The creature takes 2d6 bludgeoning damage and is blinded for 1 round. The creature can spend an Interact action wiping the salt water from its eyes to end the blinded condition.</p>",
-    "module_value": "<p>You hurl a bolt of saltwater from your extended hand, which deals 2d6 bludgeoning damage. Make a ranged spell attack against a target within range.</p>\n<hr>\n<p><strong>Critical Success</strong> The creature takes double damage and is @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Blinded} for 1 round and @UUID[Compendium.pf2e.conditionitems.Item.TkIyaNPgTZFBCCuh]{Dazzled} for 1 minute as saltwater sprays into its eyes. The creature can spend an Interact action to rub its eyes and end the blinded condition, but not the dazzled condition.</p>\n<p><strong>Success</strong> The creature takes full damage and is blinded for 1 round. The creature can spend an Interact action wiping the salt water from its eyes to end the blinded condition.</p>",
+    "module_pattern": "<p>You hurl a bolt of saltwater from your extended hand. Make a ranged spell attack against a target within range.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature takes 4d6 bludgeoning damage and is @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Blinded} for 1 round and @UUID[Compendium.pf2e.conditionitems.Item.TkIyaNPgTZFBCCuh]{Dazzled} for 1 minute as saltwater sprays into its eyes. The creature can spend an Interact action to rub its eyes and end the blinded condition, but not the dazzled condition.</p>\n<p><strong>Success</strong> The creature takes 2d6 bludgeoning damage and is blinded for 1 round. The creature can spend an Interact action wiping the salt water from its eyes to end the blinded condition.</p>",
+    "module_value": "<p>You hurl a bolt of saltwater from your extended hand, which deals 2d6 bludgeoning damage. Make a ranged spell attack against a target within range.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature takes double damage and is @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Blinded} for 1 round and @UUID[Compendium.pf2e.conditionitems.Item.TkIyaNPgTZFBCCuh]{Dazzled} for 1 minute as saltwater sprays into its eyes. The creature can spend an Interact action to rub its eyes and end the blinded condition, but not the dazzled condition.</p>\n<p><strong>Success</strong> The creature takes full damage and is blinded for 1 round. The creature can spend an Interact action wiping the salt water from its eyes to end the blinded condition.</p>",
     "module_comment": ""
   },
   {
@@ -1593,7 +1593,7 @@ export const allGeneratedCorrections = [
     "severity": 2,
     "issue_description": "Has no saving throw",
     "reasoning": "usually abilities like this have a saving throw and a DC, unless they're intended to be \"automatic damage\" which is usually lower damage",
-    "proposed_fix": "Replace \"emanation. Foes in the area take 6d6 piercing damage.\" with \"emanation, dealing 6d6 piercing damage. Each creature in the area must attempt a basic saving throw against the higher of your class DC or spell DC.\"",
+    "proposed_fix": "Add \"Each creature in the area must attempt a basic saving throw against the higher of your class DC or spell DC.\"",
     "fix_reliability": 4,
     "fix_commentary": "",
     "discussion_link": "https://www.reddit.com/r/Pathfinder2e/comments/wd14iz/rain_of_bolts_save/",
@@ -1601,8 +1601,8 @@ export const allGeneratedCorrections = [
     "module_uuid": "Compendium.pf2e.feats-srd.Item.llWnSLYALh88iRGQ",
     "module_action": "FIND_AND_REPLACE",
     "module_field_key": "system.description.value",
-    "module_pattern": "emanation. Foes in the area take 6d6 piercing damage.",
-    "module_value": "emanation, dealing 6d6 piercing damage. Each creature in the area must attempt a @Check[type:reflex|dc:resolve(@actor.attributes.classOrSpellDC.value)|traits:damaging-effect] save against the higher of your class DC or spell DC.",
+    "module_pattern": "damage. This",
+    "module_value": "damage. Each creature in the area must attempt a @Check[type:reflex|dc:resolve(@actor.attributes.classOrSpellDC.value)|traits:damaging-effect] save against the higher of your class DC or spell DC. This",
     "module_comment": ""
   },
   {
@@ -1689,8 +1689,8 @@ export const allGeneratedCorrections = [
     "module_uuid": "Compendium.pf2e.feats-srd.Item.r5vSplcFXtTS0kOB",
     "module_action": "FIND_AND_REPLACE",
     "module_field_key": "system.description.value",
-    "module_pattern": "<p>You unleash a small, localized tremor in a @Template[type:burst|distance:10] within 30 feet. Each creature in the area takes @Damage[(1d8+(floor((@actor.level -1)/2))d10)[bludgeoning]] damage with a @Check[type:fortitude|dc:resolve(@actor.attributes.classDC.value)|basic:true] save against your class DC. A creature that critically fails is knocked @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{Prone}. Earth and stone in the area is difficult terrain until the start of your next turn.</p>\n<hr>\n<p><strong>Level (+2)</strong> The damage increases by 1d10.</p>",
-    "module_value": "<p>You unleash a small, localized tremor in a @Template[type:burst|distance:10] within 30 feet. Each creature in the area takes @Damage[(1d8+(floor((@actor.level -1)/2))d8)[bludgeoning]] damage with a @Check[type:fortitude|dc:resolve(@actor.attributes.classDC.value)|basic:true] save against your class DC. A creature that critically fails is knocked @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{Prone}. Earth and stone in the area is difficult terrain until the start of your next turn.</p>\n<hr>\n<p><strong>Level (+2)</strong> The damage increases by 1d8.</p>",
+    "module_pattern": "<p>You unleash a small, localized tremor in a @Template[type:burst|distance:10] within 30 feet. Each creature in the area takes @Damage[(1d8+(floor((@actor.level -1)/2))d10)[bludgeoning]] damage with a @Check[type:fortitude|dc:resolve(@actor.attributes.classDC.value)|basic:true] save against your class DC. A creature that critically fails is knocked @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{Prone}. Earth and stone in the area is difficult terrain until the start of your next turn.</p>\n<hr />\n<p><strong>Level (+2)</strong> The damage increases by 1d10.</p>",
+    "module_value": "<p>You unleash a small, localized tremor in a @Template[type:burst|distance:10] within 30 feet. Each creature in the area takes @Damage[(1d8+(floor((@actor.level -1)/2))d8)[bludgeoning]] damage with a @Check[type:fortitude|dc:resolve(@actor.attributes.classDC.value)|basic:true] save against your class DC. A creature that critically fails is knocked @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{Prone}. Earth and stone in the area is difficult terrain until the start of your next turn.</p>\n<hr />\n<p><strong>Level (+2)</strong> The damage increases by 1d8.</p>",
     "module_comment": "this is UGLY but right now it's the only way I can make two small edits in the same field without worrying"
   },
   {
@@ -1711,8 +1711,8 @@ export const allGeneratedCorrections = [
     "module_uuid": "Compendium.pf2e.feats-srd.Item.IcAEMf94XoTvtzAO",
     "module_action": "FIND_AND_REPLACE",
     "module_field_key": "system.description.value",
-    "module_pattern": "You grow a nourishing nut, vegetable, seed, or fruit. Choose a creature in your kinetic aura. The produce grows in their open hand, or at their feet if they have no open hands. The produce has light Bulk. A creature can eat it with an Interact action to regain 1d4+1 HP; this is a healing vitality effect. The creature feels full for 10 minutes, during which it has resistance 2 to void damage and can't eat another piece of produce. Produce not consumed by the start of your next turn withers away.\n\n@UUID[Compendium.pf2e.feat-effects.Item.2GWZgsvMJF9DN0DO]{Effect: Fresh Produce}\n\nLevel (+2) The healing increases by 1d4+5, and the resistance increases by 2.\n\n[[/r ((floor((max(1,@actor.level)-1)/2)+1)d4+(floor((max(1,@actor.level)-1)/2)*5+1))[vitality,healing]]]{Leveled HP}",
-    "module_value": "You grow a nourishing nut, vegetable, seed, or fruit. Choose a creature in your kinetic aura. The produce grows in their open hand, or at their feet if they have no open hands. The produce has light Bulk. A creature can eat it with an Interact action to regain 1d4+5 HP; this is a healing vitality effect. The creature feels full for 10 minutes, during which it has resistance 2 to void damage and can't eat another piece of produce. Produce not consumed by the start of your next turn withers away.\n\n@UUID[Compendium.pf2e.feat-effects.Item.2GWZgsvMJF9DN0DO]{Effect: Fresh Produce}\n\nLevel (+2) The healing increases by 1d4+5, and the resistance increases by 2.\n\n[[/r (ceil(max(1,@actor.level)/2))d4+ceil(max(1,@actor.level)/2)*5[vitality,healing]]]{Leveled HP}",
+    "module_pattern": "<p>You grow a nourishing nut, vegetable, seed, or fruit. Choose a creature in your kinetic aura. The produce grows in their open hand, or at their feet if they have no open hands. The produce has light Bulk. A creature can eat it with an Interact action to regain 1d4+1 HP; this is a healing vitality effect. The creature feels full for 10 minutes, during which it has resistance 2 to void damage and can't eat another piece of produce. Produce not consumed by the start of your next turn withers away.</p>\n<p>@UUID[Compendium.pf2e.feat-effects.Item.2GWZgsvMJF9DN0DO]{Effect: Fresh Produce}</p>\n<hr />\n<p><strong>Level (+2)</strong> The healing increases by 1d4+5, and the resistance increases by 2.</p>\n<p>[[/r ((floor((max(1,@actor.level)-1)/2)+1)d4+(floor((max(1,@actor.level)-1)/2)*5+1))[vitality,healing]]]{Leveled HP}</p>",
+    "module_value": "<p>You grow a nourishing nut, vegetable, seed, or fruit. Choose a creature in your kinetic aura. The produce grows in their open hand, or at their feet if they have no open hands. The produce has light Bulk. A creature can eat it with an Interact action to regain 1d4+4 HP; this is a healing vitality effect. The creature feels full for 10 minutes, during which it has resistance 2 to void damage and can't eat another piece of produce. Produce not consumed by the start of your next turn withers away.</p>\n<p>@UUID[Compendium.pf2e.feat-effects.Item.2GWZgsvMJF9DN0DO]{Effect: Fresh Produce}</p>\n<hr />\n<p><strong>Level (+2)</strong> The healing increases by 1d4+5, and the resistance increases by 2.</p>\n<p>[[/r (ceil(max(1,@actor.level)/2))d4+ceil(max(1,@actor.level)/2)*5[vitality,healing]]]{Leveled HP}</p>",
     "module_comment": ""
   },
   {
