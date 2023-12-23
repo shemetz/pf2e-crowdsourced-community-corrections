@@ -2,20 +2,19 @@ import csv
 import json
 
 HEADERS_LONG_TO_SHORT = {
-    'Sorting/grouping': "sorting_grouping",
-    'Source': "source",
     'Name/Header (+AoN link)': 'name_or_header',
     'Subheader (if any)': 'subheader',
+    'Source': 'source',
     'Issue type': 'issue_type',
-    'Confidence': 'confidence',
+    'Issue description / summary': 'issue_description',
     'Severity': 'severity',
-    'Issue description/summary': 'issue_description',
-    'Reasoning/arguments/proof': 'reasoning',
+    'Reasoning / arguments / proof': 'reasoning',
+    'Confidence': 'confidence',
     'Proposed fix (unofficial!)': 'proposed_fix',
     'Fix reliability': 'fix_reliability',
     'Fix commentary': 'fix_commentary',
     'Discussion link': 'discussion_link',
-    'Additional comments': 'additional_comments',
+    'Sorting/grouping': 'sorting_grouping',
     '_module_uuid': 'module_uuid',
     '_module_action': 'module_action',
     '_module_field_key': 'module_field_key',
@@ -25,22 +24,26 @@ HEADERS_LONG_TO_SHORT = {
 }
 
 
-def main():
+def import_spreadsheets():
     print("importing spreadsheet data...")
-    csv_file_path = "./PF2E Crowdsourced Community Corrections - Errors.csv"
-    with open(csv_file_path, newline='') as csv_file:
-        file_reader = csv.reader(csv_file, delimiter=',', quotechar='"')
-        csv_lines = list(file_reader)
-    # first line is headers
-    headers = csv_lines[0]
-    assert tuple(headers) == tuple(HEADERS_LONG_TO_SHORT.keys())
-    # we want to convert the csv file into a json file, which is weird but convenient enough
-    # we'll also convert the headers to shorter versions, then use them as json object keys
-    # this is a bit hacky but it works
-    created_json_list = []
-    csv_corrections = csv_lines[1:]
+    csv_issue_lines = []
+    for csv_file_path in [
+        "./PF2E Crowdsourced Community Corrections - Errors.csv",
+        "./PF2E Crowdsourced Community Corrections - Power issues.csv",
+    ]:
+        with open(csv_file_path, newline='') as csv_file:
+            file_reader = csv.reader(csv_file, delimiter=',', quotechar='"')
+            csv_lines = list(file_reader)
+        # first line is headers
+        headers = csv_lines[0]
+        assert tuple(headers) == tuple(HEADERS_LONG_TO_SHORT.keys())
+        # we want to convert the csv file into a json file, which is weird but convenient enough
+        # we'll also convert the headers to shorter versions, then use them as json object keys
+        # this is a bit hacky but it works
+        created_json_list = []
+        csv_issue_lines.extend(csv_lines[1:])
     prev_obj = None
-    for corr in csv_corrections:
+    for corr in csv_issue_lines:
         json_obj = {}
         for header, value in zip(headers, corr):
             header: str = HEADERS_LONG_TO_SHORT[header]
@@ -67,6 +70,10 @@ def main():
         js_file.write("export const allGeneratedCorrections = ")
         js_file.write(json.dumps(created_json_list, indent=2))
     print("Done!")
+
+
+def main():
+    import_spreadsheets()
 
 
 if __name__ == '__main__':
