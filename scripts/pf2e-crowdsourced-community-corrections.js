@@ -5,8 +5,6 @@ const MODULE_NAME_SHORT = 'Pf2e CCC'
 
 const lockedCompendiums = new Set()
 
-const localize = (key) => game.i18n.localize(MODULE_ID + key)
-
 const unlockCompendium = async (patch) => {
   const { module_uuid } = patch
   const document = await fromUuid(module_uuid)
