@@ -24,15 +24,8 @@ const lockAllRecentlyUnlockedCompendiums = async () => {
   lockedCompendiums.clear()
 }
 
-const patchObjectWithCorrection = async (patch) => {
-  const {
-    name_or_header: name,
-    module_uuid: uuid,
-    module_action: action,
-    module_field_key: fieldKey,
-    module_pattern: pattern,
-    module_value: value,
-  } = patch
+const patchObjectWithCorrections = async (patches) => {
+  const { module_uuid: uuid, name_or_header: name } = patches[0]
   const errorNotification = (msg) => ui.notifications.error(`${MODULE_NAME_SHORT} | ${name} | ${msg}`)
   const document = await fromUuid(uuid)
   if (!document)
@@ -46,91 +39,142 @@ const patchObjectWithCorrection = async (patch) => {
     // skip - already patched
     return false
   }
-  if (fieldKey.includes('system.traits.value'))
-    return errorNotification(`Do not use the system.traits.value field directly!`)
-  if (fieldKey.includes('system.prerequisites.value'))
-    return errorNotification(`Do not use the system.traits.value field directly!`)
-  const originalValue = fieldKey ? getProperty(originalDocData, fieldKey) : undefined
-  if (fieldKey && originalValue === undefined && action !== 'OVERWRITE')
-    return errorNotification(`Could not find value in field ${fieldKey}`)
-
   const patchUpdate = {}
-  const traits = originalDocData.system.traits.value.slice()  // .slice() = create copy
-  traits.push('pf2e-ccc-patched')
-  switch (action) {
-    case 'ADD_TRAIT':
-      if (traits.includes(value))
-        return errorNotification(`Document already has trait ${value}`)
-      traits.push(value)
-      break
-    case 'REMOVE_TRAIT':
-      if (!traits.includes(value))
-        return errorNotification(`Document doesn't already have trait ${value}`)
-      traits.splice(traits.indexOf(value), 1)
-      break
-    case 'ADD_PREREQUISITE':
-      const prereqs = originalDocData.system.prerequisites.value.slice()  // .slice() = create copy
-      if (prereqs.includes(value) || prereqs?.[0]?.value === value)
-        return errorNotification(`Document already has prerequisite ${value}`)
-      prereqs.push({ value: value })
-      patchUpdate['system.prerequisites.value'] = prereqs
-      break
-    case 'FIND_AND_REPLACE':
-      const updatedValue = originalValue.replace(pattern, value)
-      if (updatedValue === originalValue)
-        return errorNotification(`Field ${fieldKey} has no matches for pattern`)
-      const multiUpdatedValue = updatedValue.replaceAll(pattern, value)
-      if (updatedValue !== multiUpdatedValue) {
-        return errorNotification(`Field ${fieldKey} has more than 1 matche for pattern`)
-      }
-      const extraUpdatedValue = updatedValue.replace(pattern, value)
-      if (updatedValue !== extraUpdatedValue) {
-        return errorNotification(`Pattern replacement in ${fieldKey} isn't self-preventing`)
-      }
-      patchUpdate[fieldKey] = updatedValue
-      break
-    case 'APPEND':
-      const extraSuffix = originalValue.endsWith('</p>') ? '</p>' : ''
-      const trimmedValue = originalValue.substring(0, originalValue.length - extraSuffix.length)
-      if (trimmedValue.endsWith(value))
-        return errorNotification(`Field ${fieldKey} already ends with: ${value}`)
-      patchUpdate[fieldKey] = trimmedValue + value + extraSuffix
-      break
-    case 'PREPEND':
-      const extraPrefix = originalValue.startsWith('<p>') ? '<p>' : ''
-      const trimmedValue2 = originalValue.substring(extraPrefix.length)
-      if (trimmedValue2.startsWith(value))
-        return errorNotification(`Field ${fieldKey} already starts with: ${value}`)
-      patchUpdate[fieldKey] = extraPrefix + value + trimmedValue2
-      break
-    case 'OVERWRITE': // no check to see if it was already replaced;  this one just has to be applied over and over
-      patchUpdate[fieldKey] = value
-      break
-    default:
-      return errorNotification(`Unknown action: ${action}`)
+  const traits = originalDocData.system.traits?.value?.slice()  // .slice() = create copy
+  for (const patch of patches) {
+    const {
+      module_action: action,
+      module_field_key: fieldKey,
+      module_pattern: pattern,
+      module_value: value,
+    } = patch
+    if (fieldKey.includes('system.traits.value'))
+      return errorNotification(`Do not use the system.traits.value field directly!`)
+    if (fieldKey.includes('system.prerequisites.value'))
+      return errorNotification(`Do not use the system.traits.value field directly!`)
+    const originalValue = fieldKey ? getProperty(originalDocData, fieldKey) : undefined
+    if (fieldKey && originalValue === undefined && action !== 'OVERWRITE')
+      return errorNotification(`Could not find value in field ${fieldKey}`)
+    switch (action) {
+      case 'ADD_TRAIT':
+        if (traits.includes(value))
+          return errorNotification(`Document already has trait ${value}`)
+        traits.push(value)
+        break
+      case 'REMOVE_TRAIT':
+        if (!traits.includes(value))
+          return errorNotification(`Document doesn't already have trait ${value}`)
+        traits.splice(traits.indexOf(value), 1)
+        break
+      case 'ADD_PREREQUISITE':
+        const prereqs = originalDocData.system.prerequisites.value.slice()  // .slice() = create copy
+        if (prereqs.includes(value) || prereqs?.[0]?.value === value)
+          return errorNotification(`Document already has prerequisite ${value}`)
+        prereqs.push({ value: value })
+        patchUpdate['system.prerequisites.value'] = prereqs
+        break
+      case 'FIND_AND_REPLACE':
+        //if pattern and value are integers, don't convert
+        if (Number.isInteger(originalValue)) {
+          const intPattern = parseInt(pattern)
+          const intValue = parseInt(value)
+          if (originalValue !== intPattern)
+            return errorNotification(`Field ${fieldKey} doesn't match expected value ${intPattern}`)
+          if (originalValue === intValue)
+            return errorNotification(`Field ${fieldKey} already has value ${intValue}`)
+          patchUpdate[fieldKey] = intValue
+          break
+        } else {
+          const updatedValue = originalValue.replace(pattern, value)
+          if (updatedValue === originalValue)
+            if (originalValue.includes(value))
+              return errorNotification(`Field ${fieldKey} already contains value without any pattern matching`)
+            else
+              return errorNotification(`Field ${fieldKey} has no matches for pattern`)
+          const multiUpdatedValue = updatedValue.replaceAll(pattern, value)
+          if (updatedValue !== multiUpdatedValue) {
+            return errorNotification(`Field ${fieldKey} has more than 1 matches for pattern`)
+          }
+          const extraUpdatedValue = updatedValue.replace(pattern, value)
+          if (updatedValue !== extraUpdatedValue) {
+            return errorNotification(`Pattern replacement in ${fieldKey} isn't self-preventing`)
+          }
+          patchUpdate[fieldKey] = updatedValue
+          break
+        }
+      case 'APPEND':
+        const extraSuffix = originalValue.endsWith('</p>') ? '</p>' : ''
+        const trimmedValue = originalValue.substring(0, originalValue.length - extraSuffix.length)
+        if (trimmedValue.endsWith(value))
+          return errorNotification(`Field ${fieldKey} already ends with: ${value}`)
+        patchUpdate[fieldKey] = trimmedValue + value + extraSuffix
+        break
+      case 'PREPEND':
+        const extraPrefix = originalValue.startsWith('<p>') ? '<p>' : ''
+        const trimmedValue2 = originalValue.substring(extraPrefix.length)
+        if (trimmedValue2.startsWith(value))
+          return errorNotification(`Field ${fieldKey} already starts with: ${value}`)
+        patchUpdate[fieldKey] = extraPrefix + value + trimmedValue2
+        break
+      case 'OVERWRITE': // no check to see if it was already replaced;  this one just has to be applied over and over
+        patchUpdate[fieldKey] = value
+        break
+      default:
+        return errorNotification(`Unknown action: ${action}`)
+    }
   }
   patchUpdate[`flags.${[MODULE_ID]}.patched`] = true
-  patchUpdate['system.traits.value'] = traits
+  if (traits) {
+    traits.push('pf2e-ccc-patched')
+    patchUpdate['system.traits.value'] = traits
+  } else {
+    // deities don't have traits so I'm forced to change their name to keep the change clearly visible
+    patchUpdate['name'] = originalDocData.name + ' (CCC Patched)'
+  }
   console.debug(`${MODULE_NAME_SHORT} | ${name} | Patching document with UUID ${uuid}...`, patchUpdate)
   await document.update(patchUpdate)
   return true
 }
 
+const unsetPatchMarkers = async (uuid) => {
+  const correction = allGeneratedCorrections.find(c => c.module_uuid === uuid)
+  await unlockCompendium(correction)
+  const document = await fromUuid(uuid)
+  const patchUpdate = { [`flags.${[MODULE_ID]}.patched`]: false }
+  if (document.system.traits?.value?.includes('pf2e-ccc-patched')) {
+    const traits = document.system.traits.value.slice()
+    traits.splice(traits.indexOf('pf2e-ccc-patched'), 1)
+    patchUpdate['system.traits.value'] = traits
+  }
+  if (document.name.includes(' (CCC Patched)')) {
+    patchUpdate['name'] = document.name.replace(' (CCC Patched)', '')
+  }
+  await document.update(patchUpdate)
+  await lockAllRecentlyUnlockedCompendiums()
+}
+
 const patchEverything = async () => {
   console.log(`${MODULE_NAME_SHORT} | Starting to patch documents...`)
-  const corrections = allGeneratedCorrections
-  for (const correction of corrections) {
-    await unlockCompendium(correction)
+  // group by uuid
+  const correctionsByUuid = allGeneratedCorrections.reduce((acc, correction) => {
+    const { module_uuid: uuid } = correction
+    if (!acc[uuid]) acc[uuid] = []
+    acc[uuid].push(correction)
+    return acc
+  }, {})
+
+  for (const corrections of Object.values(correctionsByUuid)) {
+    await unlockCompendium(corrections[0])
   }
   const wereUpdated = []
   console.log(`${MODULE_NAME_SHORT} | (Unlocked ${lockedCompendiums.size} compendiums)`)
-  for (const correction of corrections) {
+  for (const corrections of Object.values(correctionsByUuid)) {
     try {
-      const patchResult = await patchObjectWithCorrection(correction)
+      const patchResult = await patchObjectWithCorrections(corrections)
       if (patchResult === true)
-        wereUpdated.push(correction)
+        wereUpdated.push(corrections[0])
     } catch (e) {
-      ui.notifications.error(`Error while patching ${correction.name_or_header} (${correction.module_uuid})`)
+      ui.notifications.error(`Error while patching ${corrections[0].name_or_header} (${corrections[0].module_uuid})`)
       console.error(e)
     }
   }
@@ -145,7 +189,7 @@ const pf2eSystemReadyHook = async () => {
   if (!game.user.isGM) return // only GMs have the permissions (and need) to do all this
   const numOfCorrections = Object.keys(allGeneratedCorrections).length
   console.log(`${MODULE_NAME_SHORT} | Initializing, with ${numOfCorrections} error corrections in json file`)
-  window.pf2eCccc = { patchEverything, lockAllRecentlyUnlockedCompendiums }
+  window.pf2eCccc = { patchEverything, unsetPatchMarkers }
 }
 
 Hooks.once('pf2e.systemReady', pf2eSystemReadyHook)
