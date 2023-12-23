@@ -43,13 +43,15 @@ def main():
     for corr in csv_corrections:
         json_obj = {}
         for header, value in zip(headers, corr):
-            header = HEADERS_LONG_TO_SHORT[header]
+            header: str = HEADERS_LONG_TO_SHORT[header]
             if "\u00e2\u2020\u2018 see above" in value and prev_obj is not None:
                 value = prev_obj[header]
-            if "\r" in value:
-                value = value.replace("\r\n", "\n")
             if header in ['confidence', 'severity', 'fix_reliability']:
                 value = int(value)
+            else:
+                value = value.replace("\r\n", "\n")
+                value = value.replace("\n\n", "\n")
+                value = value.replace("<hr>", "<hr />")
             json_obj[header] = value
         if json_obj['module_action'] in ['', 'GOOD_ALREADY', 'SKIP']:
             continue  # skip this correction
