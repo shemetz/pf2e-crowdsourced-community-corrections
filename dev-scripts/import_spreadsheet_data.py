@@ -49,7 +49,7 @@ def main():
             if header in ['confidence', 'severity', 'fix_reliability']:
                 value = int(value)
             json_obj[header] = value
-        if json_obj['module_action'] in ['', 'GOOD_ALREADY']:
+        if json_obj['module_action'] in ['', 'GOOD_ALREADY', 'SKIP']:
             continue  # skip this correction
         created_json_list.append(json_obj)
         prev_obj = json_obj

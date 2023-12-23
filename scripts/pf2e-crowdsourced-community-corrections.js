@@ -46,8 +46,13 @@ const patchObjectWithCorrection = async (patch) => {
     // skip - already patched
     return false
   }
-  if (fieldKey === 'system.traits.value')
+  if (fieldKey.includes('system.traits.value'))
     return errorNotification(`Do not use the system.traits.value field directly!`)
+  if (fieldKey.includes('system.prerequisites.value'))
+    return errorNotification(`Do not use the system.traits.value field directly!`)
+  const originalValue = fieldKey ? getProperty(originalDocData, fieldKey) : undefined
+  if (fieldKey && originalValue === undefined && action !== 'OVERWRITE')
+    return errorNotification(`Could not find value in field ${fieldKey}`)
 
   const patchUpdate = {}
   const traits = originalDocData.system.traits.value.slice()  // .slice() = create copy
@@ -63,8 +68,14 @@ const patchObjectWithCorrection = async (patch) => {
         return errorNotification(`Document doesn't already have trait ${value}`)
       traits.splice(traits.indexOf(value), 1)
       break
+    case 'ADD_PREREQUISITE':
+      const prereqs = originalDocData.system.prerequisites.value.slice()  // .slice() = create copy
+      if (prereqs.includes(value) || prereqs?.[0]?.value === value)
+        return errorNotification(`Document already has prerequisite ${value}`)
+      prereqs.push({ value: value })
+      patchUpdate['system.prerequisites.value'] = prereqs
+      break
     case 'FIND_AND_REPLACE':
-      const originalValue = getProperty(originalDocData, fieldKey)
       const updatedValue = originalValue.replace(pattern, value)
       if (updatedValue === originalValue)
         return errorNotification(`Field ${fieldKey} has no matches for pattern`)
@@ -79,17 +90,15 @@ const patchObjectWithCorrection = async (patch) => {
       patchUpdate[fieldKey] = updatedValue
       break
     case 'APPEND':
-      let valueBeforeAppend = getProperty(originalDocData, fieldKey)
-      const extraSuffix = valueBeforeAppend.endsWith('</p>') ? '</p>' : ''
-      const trimmedValue = valueBeforeAppend.substring(0, valueBeforeAppend.length - extraSuffix.length)
+      const extraSuffix = originalValue.endsWith('</p>') ? '</p>' : ''
+      const trimmedValue = originalValue.substring(0, originalValue.length - extraSuffix.length)
       if (trimmedValue.endsWith(value))
         return errorNotification(`Field ${fieldKey} already ends with: ${value}`)
       patchUpdate[fieldKey] = trimmedValue + value + extraSuffix
       break
     case 'PREPEND':
-      const valueBeforePrepend = getProperty(originalDocData, fieldKey)
-      const extraPrefix = valueBeforePrepend.startsWith('<p>') ? '<p>' : ''
-      const trimmedValue2 = valueBeforePrepend.substring(extraPrefix.length)
+      const extraPrefix = originalValue.startsWith('<p>') ? '<p>' : ''
+      const trimmedValue2 = originalValue.substring(extraPrefix.length)
       if (trimmedValue2.startsWith(value))
         return errorNotification(`Field ${fieldKey} already starts with: ${value}`)
       patchUpdate[fieldKey] = extraPrefix + value + trimmedValue2
@@ -121,7 +130,7 @@ const patchEverything = async () => {
       if (patchResult === true)
         wereUpdated.push(correction)
     } catch (e) {
-      ui.notifications.error(`Error while patching UUID: ${correction.module_uuid}`)
+      ui.notifications.error(`Error while patching ${correction.name_or_header} (${correction.module_uuid})`)
       console.error(e)
     }
   }
