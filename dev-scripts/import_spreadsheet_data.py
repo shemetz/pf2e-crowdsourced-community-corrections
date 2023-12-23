@@ -46,6 +46,8 @@ def main():
             header = HEADERS_LONG_TO_SHORT[header]
             if "\u00e2\u2020\u2018 see above" in value and prev_obj is not None:
                 value = prev_obj[header]
+            if "\r" in value:
+                value = value.replace("\r\n", "\n")
             if header in ['confidence', 'severity', 'fix_reliability']:
                 value = int(value)
             json_obj[header] = value

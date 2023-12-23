@@ -24,6 +24,37 @@ const lockAllRecentlyUnlockedCompendiums = async () => {
   lockedCompendiums.clear()
 }
 
+const handleArraysInDotNotation = (patchUpdate, originalDocData) => {
+  const finalPatchUpdate = patchUpdate
+  for (const [fullKey, value] of Object.entries(patchUpdate)) {
+    const keyParts = fullKey.split('.')
+    for (let i = 0; i < keyParts.length; i++) {
+      const keyPart = keyParts[i]
+      if (keyPart.match(/^\d+$/)) {
+        // this is an array index
+        const keyAsIndex = parseInt(keyPart)
+        const keyUntilArray = keyParts.slice(0, i).join('.')
+        const array = getProperty(originalDocData, keyUntilArray)
+        if (!Array.isArray(array)) {
+          if (typeof array === 'object')
+            continue // this is an object with a single digit string key, not an array
+          throw new Error(`Expected ${keyUntilArray} to be an array`)
+        }
+        if (i === keyParts.length - 1) {
+          // this is the final key
+          array[keyAsIndex] = value
+        } else {
+          // this is not the final key
+          const keyAfterArray = keyParts.slice(i + 1).join('.')
+          array[keyAsIndex][keyAfterArray] = value
+        }
+        delete finalPatchUpdate[fullKey]
+        finalPatchUpdate[keyUntilArray] = array
+      }
+    }
+  }
+}
+
 const patchObjectWithCorrections = async (patches) => {
   const { module_uuid: uuid, name_or_header: name } = patches[0]
   const errorNotification = (msg) => ui.notifications.error(`${MODULE_NAME_SHORT} | ${name} | ${msg}`)
@@ -55,6 +86,8 @@ const patchObjectWithCorrections = async (patches) => {
     const originalValue = fieldKey ? getProperty(originalDocData, fieldKey) : undefined
     if (fieldKey && originalValue === undefined && action !== 'OVERWRITE')
       return errorNotification(`Could not find value in field ${fieldKey}`)
+    if (pattern !== '' && action !== 'FIND_AND_REPLACE')
+      return errorNotification(`Pattern must be empty for ${action} action;  did you mean to use FIND_AND_REPLACE?`)
     switch (action) {
       case 'ADD_TRAIT':
         if (traits.includes(value))
@@ -74,12 +107,23 @@ const patchObjectWithCorrections = async (patches) => {
         patchUpdate['system.prerequisites.value'] = prereqs
         break
       case 'FIND_AND_REPLACE':
+        if (pattern === '')
+          return errorNotification(`Pattern cannot be empty`)
         //if pattern and value are integers, don't convert
-        if (Number.isInteger(originalValue)) {
+        if (value.startsWith('{') && value.endsWith('}')) {
+          const strOriginalValue = JSON.stringify(originalValue)
+          const jsonValue = JSON.parse(value)
+          if (strOriginalValue !== pattern)
+            return errorNotification(`Field ${fieldKey} doesn't match expected value ${pattern}: ${originalValue}`)
+          if (strOriginalValue === value)
+            return errorNotification(`Field ${fieldKey} already has value ${value}`)
+          patchUpdate[fieldKey] = jsonValue
+          break
+        } else if (Number.isInteger(value)) {
           const intPattern = parseInt(pattern)
           const intValue = parseInt(value)
           if (originalValue !== intPattern)
-            return errorNotification(`Field ${fieldKey} doesn't match expected value ${intPattern}`)
+            return errorNotification(`Field ${fieldKey} doesn't match expected value ${intPattern}: ${originalValue}`)
           if (originalValue === intValue)
             return errorNotification(`Field ${fieldKey} already has value ${intValue}`)
           patchUpdate[fieldKey] = intValue
@@ -91,7 +135,7 @@ const patchObjectWithCorrections = async (patches) => {
               return errorNotification(`Field ${fieldKey} already contains value without any pattern matching`)
             else
               return errorNotification(`Field ${fieldKey} has no matches for pattern`)
-          const multiUpdatedValue = updatedValue.replaceAll(pattern, value)
+          const multiUpdatedValue = originalValue.replaceAll(pattern, value)
           if (updatedValue !== multiUpdatedValue) {
             return errorNotification(`Field ${fieldKey} has more than 1 matches for pattern`)
           }
@@ -131,6 +175,8 @@ const patchObjectWithCorrections = async (patches) => {
     // deities don't have traits so I'm forced to change their name to keep the change clearly visible
     patchUpdate['name'] = originalDocData.name + ' (CCC Patched)'
   }
+  // handle arrays (annoyingly, foundry dot notation doesn't automatically do this)
+  handleArraysInDotNotation(patchUpdate, originalDocData)
   console.debug(`${MODULE_NAME_SHORT} | ${name} | Patching document with UUID ${uuid}...`, patchUpdate)
   await document.update(patchUpdate)
   return true
