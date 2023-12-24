@@ -1,8 +1,8 @@
 {
   "id": "pf2e-crowdsourced-community-corrections",
   "title": "Pf2e Crowdsourced Community Corrections",
-  "description": "",
-  "version": "0.1.0",
+  "description": "Patches pf2e compendium documents to fix community-reported errors, as 'unofficial errata'.",
+  "version": "0.2.0",
   "compatibility": {
     "minimum": "11",
     "verified": "11"
