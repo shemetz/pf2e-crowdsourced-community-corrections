@@ -12,6 +12,22 @@ To install, browse for it in the module browser,
 or [directly copy the manifest link for the latest release](https://github.com/shemetz/pf2e-crowdsourced-community-corrections/releases/latest/download/module.json)
 .
 
+# [Source of data - collaborative spreadsheet](https://docs.google.com/spreadsheets/d/1nZ95fXqnmutFx8HE8TLvJIFiRf3WN9EwkBv7yYLFdB4)
+
 # Features
 
-TODO
+This module is in **EXPERIMENTAL** state, not yet ready for general use and not yet submitted to the general listing.
+
+When enabled, open the settings and find the Corrections Menu inside the module settings. That menu opens up a big
+mini-spreadsheet where you can choose your minimum numbers to filter through the list, and then can click a button to
+apply the corrections (patching a few dozen compendium entries).
+
+This will last until a system update, which will revert these changes and require doing it again (potentially also
+requiring this module to update and avoid breaking things).
+
+# Roadmap
+
+- Automatically apply after pf2e system updates/migrations
+- Add ability to apply single patches
+- Apply patches to imported things too
+- Apply patches within character and NPC sheets too
