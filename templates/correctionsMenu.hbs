@@ -1,0 +1,48 @@
+<form style="display:none">{{! Foundry is really insistent that this is supposed to have a form }}</form>
+<div class="pf2e-ccc-corrections-menu">
+    <div class="above-table">
+        <div class="left">
+            <label for="setting-min-confidence">
+                Minimum confidence
+            </label>
+            <input id="setting-min-confidence" type="number" value="{{settingMinConfidence}}" min="1" max="5" step="1"/>
+            <label for="setting-min-fix-reliability">
+                Minimum fix reliability
+            </label>
+            <input id="setting-min-fix-reliability" type="number" value="{{settingMinFixReliability}}" min="1" max="5"
+                   step="1"/>
+        </div>
+        <div class="right">
+            <button class="activate-corrections">
+                <i class='fas fa-stamp'></i>
+                Apply all {{enabledCorrectionsCount}} enabled corrections
+            </button>
+        </div>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th class="header">Severity</th>
+                <th class="header">Confidence</th>
+                <th class="header">Fix Reliability</th>
+                <th class="header">Name</th>
+                <th class="header">Issue summary</th>
+                <th class="header">Fix to apply</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each allCorrections}}
+                <tr  class="{{#if disabled}} disabled {{/if}}{{#if isExtra}} isExtra {{/if}}">
+                    <td class="severity-{{severity}}">{{severity}}</td>
+                    <td class="confidence-{{confidence}}">{{confidence}}</td>
+                    <td class="fix-reliability-{{fix_reliability}}">{{fix_reliability}}</td>
+                    <td>{{name_or_header}}</td>
+                    <td>{{issue_description}}</td>
+                    <td>{{proposed_fix}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

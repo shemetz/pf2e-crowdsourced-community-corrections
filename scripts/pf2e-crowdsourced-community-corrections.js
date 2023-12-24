@@ -1,7 +1,5 @@
 import { allGeneratedCorrections } from './generatedCorrections.js'
-
-const MODULE_ID = 'pf2e-crowdsourced-community-corrections'
-const MODULE_NAME_SHORT = 'Pf2e CCC'
+import { CorrectionsMenu, MODULE_ID, MODULE_NAME_SHORT, registerSettings } from './settings.js'
 
 const lockedCompendiums = new Set()
 
@@ -197,10 +195,23 @@ const unsetPatchMarkers = async (uuid) => {
   await lockAllRecentlyUnlockedCompendiums()
 }
 
-const patchEverything = async () => {
+export const getAllCorrectionsWithExtraFields = () => {
+  const settingMinConfidence = game.settings.get(MODULE_ID, 'min-confidence')
+  const settingMinFixReliability = game.settings.get(MODULE_ID, 'min-fix-reliability')
+  return allGeneratedCorrections.map(
+    c => ({
+      ...c,
+      disabled: c.confidence < settingMinConfidence || c.fix_reliability < settingMinFixReliability,
+      isExtra: c.name_or_header.includes('_extra_'),
+    }),
+  )
+}
+
+export const patchEverything = async () => {
   console.log(`${MODULE_NAME_SHORT} | Starting to patch documents...`)
   // group by uuid
-  const correctionsByUuid = allGeneratedCorrections.reduce((acc, correction) => {
+  const correctionsByUuid = getAllCorrectionsWithExtraFields().reduce((acc, correction) => {
+    if (correction.disabled) return acc
     const { module_uuid: uuid } = correction
     if (!acc[uuid]) acc[uuid] = []
     acc[uuid].push(correction)
@@ -227,13 +238,15 @@ const patchEverything = async () => {
   else
     console.log(`${MODULE_NAME_SHORT} | No documents patched (all good except for any logged errors)`)
   await lockAllRecentlyUnlockedCompendiums()
+  return wereUpdated
 }
 
 const pf2eSystemReadyHook = async () => {
   if (!game.user.isGM) return // only GMs have the permissions (and need) to do all this
   const numOfCorrections = Object.keys(allGeneratedCorrections).length
   console.log(`${MODULE_NAME_SHORT} | Initializing, with ${numOfCorrections} error corrections in json file`)
-  window.pf2eCccc = { patchEverything, unsetPatchMarkers }
+  window.pf2eCccc = { patchEverything, unsetPatchMarkers, CorrectionsMenu }
 }
 
+Hooks.once('init', registerSettings)
 Hooks.once('pf2e.systemReady', pf2eSystemReadyHook)
