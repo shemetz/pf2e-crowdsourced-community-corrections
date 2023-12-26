@@ -31,6 +31,7 @@ requiring this module to update and avoid breaking things).
 
 # Roadmap
 
+- Add backups or ability to revert patches (perhaps by storing the original altered field in a flag)
 - Automatically apply after pf2e system updates/migrations
 - Add ability to apply single patches
 - Apply patches to imported things too
