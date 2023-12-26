@@ -5,11 +5,9 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/shemetz/pf2e-crowdsourced-community-corrections/total?style=for-the-badge&label=Downloads+total)
 ![Latest Supported Foundry Version](https://img.shields.io/endpoint?url=https://foundryshields.com/version?url=https://github.com/shemetz/pf2e-crowdsourced-community-corrections/raw/master/module.json)
 
-FoundryVTT module for the PF2e system, which allows creating temporary Effects from chat messages, to easily mark tokens
-as affected by a spell/action/item that doesn't normally have embedded effects.
+FoundryVTT module for the PF2e system, which applies community-sourced corrections to pf2e compendiums.
 
-To install, browse for it in the module browser,
-or [directly copy the manifest link for the latest release](https://github.com/shemetz/pf2e-crowdsourced-community-corrections/releases/latest/download/module.json)
+To install, [directly copy the manifest link for the latest release](https://github.com/shemetz/pf2e-crowdsourced-community-corrections/releases/latest/download/module.json)
 .
 
 # [Source of data - collaborative spreadsheet](https://docs.google.com/spreadsheets/d/1nZ95fXqnmutFx8HE8TLvJIFiRf3WN9EwkBv7yYLFdB4)
@@ -24,6 +22,12 @@ apply the corrections (patching a few dozen compendium entries).
 
 This will last until a system update, which will revert these changes and require doing it again (potentially also
 requiring this module to update and avoid breaking things).
+
+# Screenshots
+
+![](metadata/screenshot_1.png)
+
+![](metadata/screenshot_2_long_air_repeater.png)
 
 # Roadmap
 
