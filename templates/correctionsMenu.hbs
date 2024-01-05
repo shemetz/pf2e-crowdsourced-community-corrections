@@ -13,9 +13,9 @@
                    step="1"/>
         </div>
         <div class="right">
-            <button class="activate-corrections">
+            <button class="apply-selected-corrections">
                 <i class='fas fa-stamp'></i>
-                Apply all {{enabledCorrectionsCount}} enabled corrections
+                Apply {{enabledCorrectionsCount}} selected corrections
             </button>
         </div>
     </div>
@@ -23,6 +23,7 @@
         <table>
             <thead>
             <tr>
+                <th class="header">Status</th>
                 <th class="header">Severity</th>
                 <th class="header">Confidence</th>
                 <th class="header">Fix Reliability</th>
@@ -33,7 +34,16 @@
             </thead>
             <tbody>
             {{#each allCorrections}}
-                <tr  class="{{#if disabled}} disabled {{/if}}{{#if isExtra}} isExtra {{/if}}">
+                <tr class="{{#if isFilteredOut}} isFilteredOut {{/if}}{{#if isExtra}} isExtra {{/if}}">
+                    <td>
+                        {{#if wasApplied}}
+                            <i class='fas fa-check wasApplied' data-tooltip="Already applied"></i>
+                        {{else}}
+                            <a class="apply-one-correction" data-module-pid="{{module_pid}}" data-tooltip="Apply">
+                                <i class='fas fa-stamp'></i>
+                            </a>
+                        {{/if}}
+                    </td>
                     <td class="severity-{{severity}}">{{severity}}</td>
                     <td class="confidence-{{confidence}}">{{confidence}}</td>
                     <td class="fix-reliability-{{fix_reliability}}">{{fix_reliability}}</td>

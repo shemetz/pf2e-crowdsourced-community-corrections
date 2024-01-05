@@ -33,7 +33,7 @@
     text-align: center;
 }
 
-.pf2e-ccc-corrections-menu tr.disabled {
+.pf2e-ccc-corrections-menu tr.isFilteredOut {
     background-color: lightgray;
     color: gray;
 }
@@ -42,6 +42,10 @@
     filter: blur(1px);
 }
 
+
+.pf2e-ccc-corrections-menu td i.wasApplied {
+    color: green;
+}
 
 .pf2e-ccc-corrections-menu td.severity-1 {
     background-color: rgba(255, 109, 0, 0.2);

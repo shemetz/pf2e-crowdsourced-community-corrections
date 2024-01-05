@@ -1,4 +1,8 @@
-import { getAllCorrectionsWithExtraFields, patchEverything } from './pf2e-crowdsourced-community-corrections.js'
+import {
+  getAllCorrectionsWithExtraFields,
+  patchEverything,
+  patchOne,
+} from './pf2e-crowdsourced-community-corrections.js'
 
 export const MODULE_ID = 'pf2e-crowdsourced-community-corrections'
 export const MODULE_NAME_SHORT = 'Pf2e CCC'
@@ -27,6 +31,14 @@ export const registerSettings = function () {
     default: 3,
     type: Number,
   })
+  game.settings.register(MODULE_ID, 'patch-history', {
+    name: '_',
+    hint: '_',
+    scope: 'world',
+    config: false,  // used internally
+    default: [],
+    type: Object,
+  })
 }
 
 export const CorrectionsMenu = class extends FormApplication {
@@ -46,7 +58,7 @@ export const CorrectionsMenu = class extends FormApplication {
     const settingMinConfidence = game.settings.get(MODULE_ID, 'min-confidence')
     const settingMinFixReliability = game.settings.get(MODULE_ID, 'min-fix-reliability')
     const allCorrections = getAllCorrectionsWithExtraFields()
-    const enabledCorrectionsCount = allCorrections.filter(c => !c.disabled).length
+    const enabledCorrectionsCount = allCorrections.filter(c => !c.isFilteredOut).length
     return {
       settingMinConfidence,
       settingMinFixReliability,
@@ -56,8 +68,8 @@ export const CorrectionsMenu = class extends FormApplication {
   }
 
   activateListeners (_html) {
-    this.element.find('.activate-corrections').on('click', async () => {
-      const enabledCorrectionsCount = getAllCorrectionsWithExtraFields().filter(c => !c.disabled).length
+    this.element.find('.apply-selected-corrections').on('click', async () => {
+      const enabledCorrectionsCount = getAllCorrectionsWithExtraFields().filter(c => !c.isFilteredOut).length
       return Dialog.confirm({
         title: `Activate ${enabledCorrectionsCount} Corrections`,
         content: `
@@ -76,6 +88,15 @@ export const CorrectionsMenu = class extends FormApplication {
           })
         },
       })
+    })
+    this.element.find('.apply-one-correction').on('click', async (el) => {
+      const modulePid = el.currentTarget.dataset.modulePid
+      const correction = getAllCorrectionsWithExtraFields().find(c => c.module_pid === modulePid)
+      const success = await patchOne(correction)
+      if (success) {
+        ui.notifications.info(`Done applying correction to ${correction.name_or_header}`)
+        this.render()
+      }
     })
     this.element.find('#setting-min-confidence').on('input', async event => {
       await game.settings.set(MODULE_ID, 'min-confidence', parseInt(event.target.value))

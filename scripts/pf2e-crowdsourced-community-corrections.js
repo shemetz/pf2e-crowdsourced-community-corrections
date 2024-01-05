@@ -61,11 +61,6 @@ const patchObjectWithCorrections = async (patches) => {
   if (!compendium)
     return errorNotification(`Could not find compendium for document with UUID ${uuid}`)
   const originalDocData = document?.toObject()
-  const flags = originalDocData.flags
-  if (flags?.[MODULE_ID]?.['patched']) {
-    // skip - already patched
-    return false
-  }
   const patchUpdate = {}
   const traits = originalDocData.system.traits?.value?.slice()  // .slice() = create copy
   for (const patch of patches) {
@@ -173,7 +168,7 @@ const patchObjectWithCorrections = async (patches) => {
   }
   // handle arrays (annoyingly, foundry dot notation doesn't automatically do this)
   handleArraysInDotNotation(patchUpdate, originalDocData)
-  console.debug(`${MODULE_NAME_SHORT} | ${name} | Patching document with UUID ${uuid}...`, patchUpdate)
+  console.debug(`${MODULE_NAME_SHORT} | ${name} | Applying document with UUID ${uuid}...`, patchUpdate)
   await document.update(patchUpdate)
   return true
 }
@@ -198,10 +193,12 @@ const unsetPatchMarkers = async (uuid) => {
 export const getAllCorrectionsWithExtraFields = () => {
   const settingMinConfidence = game.settings.get(MODULE_ID, 'min-confidence')
   const settingMinFixReliability = game.settings.get(MODULE_ID, 'min-fix-reliability')
+  const patchHistory = game.settings.get(MODULE_ID, 'patch-history')
   return allGeneratedCorrections.map(
     c => ({
       ...c,
-      disabled: c.confidence < settingMinConfidence || c.fix_reliability < settingMinFixReliability,
+      isFilteredOut: c.confidence < settingMinConfidence || c.fix_reliability < settingMinFixReliability,
+      wasApplied: patchHistory.some(p => p.pid === c.module_pid),
       isExtra: c.name_or_header.includes('_extra_'),
     }),
   )
@@ -211,7 +208,7 @@ export const patchEverything = async () => {
   console.log(`${MODULE_NAME_SHORT} | Starting to patch documents...`)
   // group by uuid
   const correctionsByUuid = getAllCorrectionsWithExtraFields().reduce((acc, correction) => {
-    if (correction.disabled) return acc
+    if (correction.isFilteredOut) return acc
     const { module_uuid: uuid } = correction
     if (!acc[uuid]) acc[uuid] = []
     acc[uuid].push(correction)
@@ -222,23 +219,66 @@ export const patchEverything = async () => {
     await unlockCompendium(corrections[0])
   }
   const wereUpdated = []
+  let hadErrors = false
   console.log(`${MODULE_NAME_SHORT} | (Unlocked ${lockedCompendiums.size} compendiums)`)
+  const appliedPatches = []
   for (const corrections of Object.values(correctionsByUuid)) {
     try {
       const patchResult = await patchObjectWithCorrections(corrections)
-      if (patchResult === true)
+      if (patchResult === true) {
         wereUpdated.push(corrections[0])
+        for (const correction of corrections) {
+          console.log(`${MODULE_NAME_SHORT} | Applied: ${correction.module_pid}`)
+          appliedPatches.push({
+            pid: correction.module_pid,
+            uuid: correction.module_uuid,
+            timestamp: Date.now(),
+            module_version: game.modules.get(MODULE_ID).version,
+          })
+        }
+      }
     } catch (e) {
       ui.notifications.error(`Error while patching ${corrections[0].name_or_header} (${corrections[0].module_uuid})`)
       console.error(e)
+      hadErrors = true
     }
   }
-  if (wereUpdated.length > 0)
+  if (wereUpdated.length > 0) {
     console.log(`${MODULE_NAME_SHORT} | Done patching documents:`, wereUpdated.map(c => c.name_or_header))
+    if (hadErrors)
+      console.warn(`${MODULE_NAME_SHORT} | Had errors while patching documents!`)
+    const allAppliedPatches = game.settings.get(MODULE_ID, 'patch-history')
+    allAppliedPatches.push(...appliedPatches)
+    console.log(`${MODULE_NAME_SHORT} | Applied ${appliedPatches.length} new patches`)
+    await game.settings.set(MODULE_ID, 'patch-history', allAppliedPatches)
+  } else if (hadErrors)
+    console.warn(`${MODULE_NAME_SHORT} | No documents patched, but had errors`)
   else
-    console.log(`${MODULE_NAME_SHORT} | No documents patched (all good except for any logged errors)`)
+    console.log(`${MODULE_NAME_SHORT} | No documents patched (all good)`)
   await lockAllRecentlyUnlockedCompendiums()
   return wereUpdated
+}
+
+export const patchOne = async (correction) => {
+  await unlockCompendium(correction)
+  if (lockedCompendiums.size > 0) console.log(`${MODULE_NAME_SHORT} | (Unlocked ${lockedCompendiums.size} compendiums)`)
+  let success = null
+  try {
+    const patchResult = await patchObjectWithCorrections([correction])
+    if (patchResult === true) {
+      console.log(`${MODULE_NAME_SHORT} | Applied: ${correction.module_pid}`)
+      const allAppliedPatches = game.settings.get(MODULE_ID, 'patch-history')
+      allAppliedPatches.push({ pid: correction.module_pid, uuid: correction.module_uuid, timestamp: Date.now() })
+      await game.settings.set(MODULE_ID, 'patch-history', allAppliedPatches)
+      success = true
+    }
+  } catch (e) {
+    success = false
+    ui.notifications.error(`Error while patching ${correction.name_or_header} (${correction.module_uuid})`)
+    console.error(e)
+  }
+  await lockAllRecentlyUnlockedCompendiums()
+  return success
 }
 
 const pf2eSystemReadyHook = async () => {
