@@ -18,7 +18,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.heightening.damage.0",
     "module_pattern": "4d4",
     "module_value": "2d4",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "inner radiance torrent - heighten"
   },
   {
     "name_or_header": "Long Air Repeater",
@@ -39,7 +40,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.usage.value",
     "module_pattern": "held-in-one-hand",
     "module_value": "held-in-two-hands",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "long air repeater - hands"
   },
   {
     "name_or_header": "Alchemical Sciences",
@@ -60,28 +62,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "",
     "module_value": " Just like reagents, these vials are only available until your next daily preparations.",
-    "module_comment": ""
-  },
-  {
-    "name_or_header": "Expert Snowcasting",
-    "subheader": "",
-    "source": "Treasure Vault pg. 185",
-    "issue_type": "Missing rule",
-    "issue_description": "Doesn't list Snowcasting as a prerequisite like other archetype feats of its kind",
-    "severity": 1,
-    "reasoning": "other similar archetype feats do have such a prerequisite",
-    "confidence": 4,
-    "proposed_fix": "Add \"Prerequisite: Snowcasting\"",
-    "fix_reliability": 5,
-    "fix_commentary": "",
-    "discussion_link": "",
-    "sorting_grouping": "",
-    "module_uuid": "Compendium.pf2e.feats-srd.Item.llDw5DqnB4LbIUCV",
-    "module_action": "ADD_PREREQUISITE",
-    "module_field_key": "",
-    "module_pattern": "",
-    "module_value": "Snowcasting",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "alchemical sciences - vials potency"
   },
   {
     "name_or_header": "Inventor Dedication",
@@ -102,7 +84,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "trained in Crafting and inventor class DC.",
     "module_value": "trained in Crafting and inventor class DC; if you were already trained in Crafting, you instead become trained in a skill of your choice.",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "inventor dedication - trained skill"
   },
   {
     "name_or_header": "Jaathoom Shuyookh",
@@ -123,28 +106,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.attributes.ac.value",
     "module_pattern": "39",
     "module_value": "29",
-    "module_comment": ""
-  },
-  {
-    "name_or_header": "Master Snowcasting",
-    "subheader": "",
-    "source": "Treasure Vault pg. 185",
-    "issue_type": "Missing rule",
-    "issue_description": "Doesn't list Expert Snowcasting as a prerequisite like other archetype feats of its kind",
-    "severity": 1,
-    "reasoning": "other similar archetype feats do have such a prerequisite",
-    "confidence": 4,
-    "proposed_fix": "Add \"Prerequisite: Expert Snowcasting\"",
-    "fix_reliability": 5,
-    "fix_commentary": "",
-    "discussion_link": "",
-    "sorting_grouping": "",
-    "module_uuid": "Compendium.pf2e.feats-srd.Item.syxJQ48bxE8NY91a",
-    "module_action": "ADD_PREREQUISITE",
-    "module_field_key": "",
-    "module_pattern": "",
-    "module_value": "Expert Snowcasting",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "jaathoom shuyookh - ac"
   },
   {
     "name_or_header": "Tehialai-Thief-Of-Ships",
@@ -165,7 +128,52 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.bonus.value",
     "module_pattern": "36",
     "module_value": "26",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "tehialai-thief-of-ships - tidal gourd - attack bonus"
+  },
+  {
+    "name_or_header": "Expert Snowcasting",
+    "subheader": "",
+    "source": "Treasure Vault pg. 185",
+    "issue_type": "Missing rule",
+    "issue_description": "Doesn't list Snowcasting as a prerequisite like other archetype feats of its kind",
+    "severity": 1,
+    "reasoning": "other similar archetype feats do have such a prerequisite",
+    "confidence": 4,
+    "proposed_fix": "Add \"Prerequisite: Snowcasting\"",
+    "fix_reliability": 5,
+    "fix_commentary": "",
+    "discussion_link": "",
+    "sorting_grouping": "200",
+    "module_uuid": "Compendium.pf2e.feats-srd.Item.llDw5DqnB4LbIUCV",
+    "module_action": "ADD_PREREQUISITE",
+    "module_field_key": "",
+    "module_pattern": "",
+    "module_value": "Snowcasting",
+    "module_comment": "",
+    "module_pid": "expert snowcasting - prerequisite"
+  },
+  {
+    "name_or_header": "Master Snowcasting",
+    "subheader": "",
+    "source": "Treasure Vault pg. 185",
+    "issue_type": "Missing rule",
+    "issue_description": "Doesn't list Expert Snowcasting as a prerequisite like other archetype feats of its kind",
+    "severity": 1,
+    "reasoning": "other similar archetype feats do have such a prerequisite",
+    "confidence": 4,
+    "proposed_fix": "Add \"Prerequisite: Expert Snowcasting\"",
+    "fix_reliability": 5,
+    "fix_commentary": "",
+    "discussion_link": "",
+    "sorting_grouping": "201",
+    "module_uuid": "Compendium.pf2e.feats-srd.Item.syxJQ48bxE8NY91a",
+    "module_action": "ADD_PREREQUISITE",
+    "module_field_key": "",
+    "module_pattern": "",
+    "module_value": "Expert Snowcasting",
+    "module_comment": "",
+    "module_pid": "master snowcasting - prerequisite"
   },
   {
     "name_or_header": "Etheric Essence Disruptor (x4)",
@@ -186,7 +194,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.price.value.gp",
     "module_pattern": "60",
     "module_value": "12",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "etheric essence disruptor - price - lesser"
   },
   {
     "name_or_header": "_extra_ Etheric Essence Disruptor",
@@ -207,7 +216,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.price.value.gp",
     "module_pattern": "360",
     "module_value": "70",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "etheric essence disruptor - price - moderate"
   },
   {
     "name_or_header": "_extra_ Etheric Essence Disruptor",
@@ -228,7 +238,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.price.value.gp",
     "module_pattern": "1400",
     "module_value": "300",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "etheric essence disruptor - price - greater"
   },
   {
     "name_or_header": "_extra_ Etheric Essence Disruptor",
@@ -249,7 +260,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.price.value.gp",
     "module_pattern": "6500",
     "module_value": "1300",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "etheric essence disruptor - price - major"
   },
   {
     "name_or_header": "Material Essence Disruptor (x4)",
@@ -270,7 +282,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.price.value.gp",
     "module_pattern": "60",
     "module_value": "12",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "material essence disruptor - price - lesser"
   },
   {
     "name_or_header": "_extra_ Material Essence Disruptor",
@@ -291,7 +304,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.price.value.gp",
     "module_pattern": "360",
     "module_value": "70",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "material essence disruptor - price - moderate"
   },
   {
     "name_or_header": "_extra_ Material Essence Disruptor",
@@ -312,7 +326,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.price.value.gp",
     "module_pattern": "1400",
     "module_value": "300",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "material essence disruptor - price - greater"
   },
   {
     "name_or_header": "_extra_ Material Essence Disruptor",
@@ -333,7 +348,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.price.value.gp",
     "module_pattern": "6500",
     "module_value": "1300",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "material essence disruptor - price - major"
   },
   {
     "name_or_header": "Hard Tail",
@@ -354,7 +370,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "",
     "module_value": " Your tail is in the brawling group.",
-    "module_comment": "already in brawling"
+    "module_comment": "already in brawling",
+    "module_pid": "hard tail - brawling"
   },
   {
     "name_or_header": "Animal Form",
@@ -375,7 +392,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "example). If your",
     "module_value": "example) and are in the brawling group. If your",
-    "module_comment": "already in brawling"
+    "module_comment": "already in brawling",
+    "module_pid": "animal form - brawling"
   },
   {
     "name_or_header": "Lizardfolk",
@@ -396,7 +414,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "",
     "module_value": " Your claws are in the brawling group.",
-    "module_comment": "already in brawling"
+    "module_comment": "already in brawling",
+    "module_pid": "lizardfolk - claws - brawling"
   },
   {
     "name_or_header": "Sharp Fangs",
@@ -417,7 +436,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "",
     "module_value": " Your fangs are in the brawling group.",
-    "module_comment": "already in brawling"
+    "module_comment": "already in brawling",
+    "module_pid": "sharp fangs - brawling"
   },
   {
     "name_or_header": "Tail Whip",
@@ -438,7 +458,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "",
     "module_value": " Your tail is in the brawling group.",
-    "module_comment": "already in brawling"
+    "module_comment": "already in brawling",
+    "module_pid": "tail whip - brawling"
   },
   {
     "name_or_header": "Untamed Shift (Wild Morph)",
@@ -459,7 +480,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "finesse traits, and",
     "module_value": "finesse traits, belong to the brawling group, and",
-    "module_comment": "already in brawling"
+    "module_comment": "already in brawling",
+    "module_pid": "untamed shift - brawling"
   },
   {
     "name_or_header": "Molten Wire",
@@ -480,7 +502,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "",
     "module_pattern": "",
     "module_value": "attack",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "molten wire - remove attack"
   },
   {
     "name_or_header": "Dive and Breach",
@@ -501,7 +524,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "",
     "module_pattern": "",
     "module_value": "attack",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "dive and breach - remove attack"
   },
   {
     "name_or_header": "Clownish Curse",
@@ -522,7 +546,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "",
     "module_pattern": "",
     "module_value": "attack",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "clownish curse - remove attack"
   },
   {
     "name_or_header": "Daydreamer's Curse",
@@ -543,7 +568,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "",
     "module_pattern": "",
     "module_value": "attack",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "daydreamers curse - remove attack"
   },
   {
     "name_or_header": "Sage's Curse",
@@ -564,7 +590,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "",
     "module_pattern": "",
     "module_value": "attack",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "sages curse - remove attack"
   },
   {
     "name_or_header": "Air Mephit",
@@ -585,7 +612,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.saves.reflex.value",
     "module_pattern": "19",
     "module_value": "9",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "air mephit - reflex"
   },
   {
     "name_or_header": "Cleanse Air",
@@ -606,7 +634,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": " but doesn't prevent future contamination.",
     "module_value": ".",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "cleanse air - contamination"
   },
   {
     "name_or_header": "Grasp of the Deep",
@@ -627,7 +656,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": " and takes @Damage[6d6[bludgeoning]] damage;",
     "module_value": ";",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "grasp of the deep - weird damage"
   },
   {
     "name_or_header": "Grikkitog",
@@ -648,7 +678,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.attributes.resistances.0.type",
     "module_pattern": "all-damage",
     "module_value": "physical",
-    "module_comment": "it's currently \"resistance: all 10 (except adamantine)\"!"
+    "module_comment": "it's currently \"resistance: all 10 (except adamantine)\"!",
+    "module_pid": "grikkitog - resistance physical"
   },
   {
     "name_or_header": "Magnetic Pinions",
@@ -669,7 +700,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "All three attacks",
     "module_value": "All attacks",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "magnetic pinions - three attacks"
   },
   {
     "name_or_header": "Storm Giant",
@@ -690,7 +722,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.bonus.value",
     "module_pattern": "37",
     "module_value": "27",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "storm giant - rock - attack"
   },
   {
     "name_or_header": "Vitrifying Blast",
@@ -711,7 +744,30 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.range.value",
     "module_pattern": "60 feet",
     "module_value": "",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "vitrifying blast - range"
+  },
+  {
+    "name_or_header": "Many spells that don't have the Aura trait (Antimagic Field, Focusing Hum, Invisibility Sphere...)",
+    "subheader": "",
+    "source": "",
+    "issue_type": "Missing rule",
+    "issue_description": "A lot of spells with an area of \"emanation\" are missing the Aura trait, yet their description clearly implies it.\nThis is a very minor issue because almost nothing interacts with the Aura trait, and some of those emanations directly say that they follow you (which could be simplified by just using the Aura trait)",
+    "severity": 1,
+    "reasoning": "This issue was long debated with regards to Bless and Bane, which have only recently been errata'd to indeed have the Aura trait.  There are dozens of other spells that haven't received that errata, however.",
+    "confidence": 4,
+    "proposed_fix": "Add the Aura trait to all of those spells (exact list of spells is up for debate, decide one by one)",
+    "fix_reliability": 4,
+    "fix_commentary": "see a larger list of such spells (and some uncertain ones) here",
+    "discussion_link": "https://www.reddit.com/r/Pathfinder2e/comments/wfab8i/a_lot_of_spells_and_abilities_need_to_get_the/",
+    "sorting_grouping": "100",
+    "module_uuid": "",
+    "module_action": "HARDCODED_HANDLING",
+    "module_field_key": "",
+    "module_pattern": "",
+    "module_value": "",
+    "module_comment": "",
+    "module_pid": "aura spells - hardcoded - add aura"
   },
   {
     "name_or_header": "Ferrumnestra",
@@ -732,7 +788,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.spells.1",
     "module_pattern": "",
     "module_value": "Compendium.pf2e.spells-srd.Item.yD819yTgbBFcCh5M",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "ferrumnestra - detect metal - automation"
   },
   {
     "name_or_header": "_extra_ Ferrumnestra",
@@ -753,7 +810,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "detect metal",
     "module_value": "fold metal",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "ferrumnestra - detect metal - description"
   },
   {
     "name_or_header": "Laudinmio",
@@ -774,7 +832,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.spells.1",
     "module_pattern": "",
     "module_value": "Compendium.pf2e.spells-srd.Item.yD819yTgbBFcCh5M",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "laudinmio- detect metal - automation"
   },
   {
     "name_or_header": "_extra_ Laudinmio",
@@ -795,7 +854,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "detect metal",
     "module_value": "fold metal",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "laudinmio-- detect metal - description"
   },
   {
     "name_or_header": "Bind Undead",
@@ -816,7 +876,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.target.value",
     "module_pattern": "1 mindless undead creature with a level no greater than bind undead's spell level",
     "module_value": "1 mindless undead creature with a level no greater than 3 (+2 per heighten)",
-    "module_comment": "I was a bit lazy here"
+    "module_comment": "I was a bit lazy here",
+    "module_pid": "bind undead - heighten target"
   },
   {
     "name_or_header": "Foxfire",
@@ -837,28 +898,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.rules.1.range",
     "module_pattern": "{\"max\":20}",
     "module_value": "{\"increment\":10}",
-    "module_comment": ""
-  },
-  {
-    "name_or_header": "Foxfire",
-    "subheader": "",
-    "source": "Ancestry Guide pg. 124",
-    "issue_type": "Missing rule",
-    "issue_description": "Uses a maximum range rather than a range increment",
-    "severity": 2,
-    "reasoning": "all other ranged attacks have a range increment",
-    "confidence": 4,
-    "proposed_fix": "Change the words \"maximum range\" to \"range increment\"",
-    "fix_reliability": 3,
-    "fix_commentary": "",
-    "discussion_link": "",
-    "sorting_grouping": "",
-    "module_uuid": "Compendium.pf2e.feats-srd.Item.qCV04rZMty2TJBrX",
-    "module_action": "FIND_AND_REPLACE",
-    "module_field_key": "system.description.value",
-    "module_pattern": "maximum range",
-    "module_value": "range increment",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "foxfire - range - automation"
   },
   {
     "name_or_header": "Glass Shield",
@@ -879,7 +920,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.heightening",
     "module_pattern": "{\"levels\":{\"3\":{\"damage\":{\"dtpQLfwMi5qU2XEa\":{\"applyMod\":true,\"category\":null,\"formula\":\"1d4\",\"materials\":[],\"type\":\"piercing\"}}},\"5\":{\"damage\":{\"dtpQLfwMi5qU2XEa\":{\"applyMod\":true,\"category\":null,\"formula\":\"2d4\",\"materials\":[],\"type\":\"piercing\"}}},\"7\":{\"damage\":{\"dtpQLfwMi5qU2XEa\":{\"applyMod\":true,\"category\":null,\"formula\":\"3d4\",\"materials\":[],\"type\":\"piercing\"}}},\"9\":{\"damage\":{\"dtpQLfwMi5qU2XEa\":{\"applyMod\":true,\"category\":null,\"formula\":\"4d4\",\"materials\":[],\"type\":\"piercing\"}}}},\"type\":\"fixed\"}",
     "module_value": "{\"levels\":{\"3\":{\"damage\":{\"dtpQLfwMi5qU2XEa\":{\"applyMod\":false,\"category\":null,\"formula\":\"2d4\",\"materials\":[],\"type\":\"piercing\"}}},\"5\":{\"damage\":{\"dtpQLfwMi5qU2XEa\":{\"applyMod\":false,\"category\":null,\"formula\":\"3d4\",\"materials\":[],\"type\":\"piercing\"}}},\"7\":{\"damage\":{\"dtpQLfwMi5qU2XEa\":{\"applyMod\":false,\"category\":null,\"formula\":\"4d4\",\"materials\":[],\"type\":\"piercing\"}}},\"9\":{\"damage\":{\"dtpQLfwMi5qU2XEa\":{\"applyMod\":false,\"category\":null,\"formula\":\"5d4\",\"materials\":[],\"type\":\"piercing\"}}}},\"type\":\"fixed\"}",
-    "module_comment": "ugly but should work"
+    "module_comment": "ugly but should work",
+    "module_pid": "glass shield - heightened"
   },
   {
     "name_or_header": "Rain of Rust",
@@ -900,7 +942,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "",
     "module_value": " The impulse ends at the end of your next turn, but you can Sustain it up to 1 minute.",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "rain of rust - missing duration"
   },
   {
     "name_or_header": "Roiling Mudslide",
@@ -921,7 +964,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "in the area",
     "module_value": "in a @Template[type:cone|distance:15]",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "roiling mudslide - missing area"
   },
   {
     "name_or_header": "Striding Fire",
@@ -942,7 +986,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "must attempt a @Check[type:reflex|dc:24|basic:true] save",
     "module_value": "takes @Damage[7d6[fire]] damage (@Check[type:reflex|dc:24|basic:true])",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "striding fire - missing damage"
   },
   {
     "name_or_header": "Zombie Dragon",
@@ -963,7 +1008,30 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "viscera that",
     "module_value": "viscera in a @Template[type:cone|distance:30] that",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "zombie dragon - missing area"
+  },
+  {
+    "name_or_header": "_extra_ Foxfire",
+    "subheader": "",
+    "source": "",
+    "issue_type": "Missing rule",
+    "issue_description": "(description)",
+    "severity": 2,
+    "reasoning": "",
+    "confidence": 4,
+    "proposed_fix": "",
+    "fix_reliability": 3,
+    "fix_commentary": "",
+    "discussion_link": "",
+    "sorting_grouping": "",
+    "module_uuid": "Compendium.pf2e.feats-srd.Item.qCV04rZMty2TJBrX",
+    "module_action": "FIND_AND_REPLACE",
+    "module_field_key": "system.description.value",
+    "module_pattern": "maximum range",
+    "module_value": "range increment",
+    "module_comment": "",
+    "module_pid": "foxfire - range - description"
   },
   {
     "name_or_header": "Basilisk",
@@ -984,7 +1052,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "{Slowed 1}.",
     "module_value": "{Slowed 1} for 1 minute.",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "basilisk - petrifying gaze - no duration"
   },
   {
     "name_or_header": "Cockatrice",
@@ -1005,7 +1074,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "{Slowed 1} (or",
     "module_value": "{Slowed 1} for 1 minute (or",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "cockatrice - petrifying gaze - no duration"
   },
   {
     "name_or_header": "Freshly Bloomed Basilisk",
@@ -1026,7 +1096,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "{Slowed 1}.",
     "module_value": "{Slowed 1} for 1 minute.",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "freshly bloomed basilisk - petrifying gaze - no duration"
   },
   {
     "name_or_header": "Scrap Barricade",
@@ -1047,7 +1118,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "open space that",
     "module_value": "open space within 120 feet that",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "scrap barricade - range"
   },
   {
     "name_or_header": "Wooden Palisade",
@@ -1068,7 +1140,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "open space that",
     "module_value": "open space within 120 feet that",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "wooden palisade - range"
   },
   {
     "name_or_header": "Peri",
@@ -1089,7 +1162,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.attributes.speed",
     "module_pattern": "{\"value\":0,\"otherSpeeds\":[],\"details\":\"\"}",
     "module_value": "{\"value\":40,\"otherSpeeds\":[{\"type\":\"fly\",\"value\":70}],\"details\":\"\"}",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "peri - missing speed"
   },
   {
     "name_or_header": "Clay Golem",
@@ -1110,7 +1184,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "The golem's counteract level is equal to its creature level.",
     "module_value": "",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "clay golem - counteract"
   },
   {
     "name_or_header": "Elemental Bulwark",
@@ -1131,7 +1206,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "a spell that",
     "module_value": "an effect that",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "elemental bulwark - a spell"
   },
   {
     "name_or_header": "Gibbering Mouther",
@@ -1152,7 +1228,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.actions.value",
     "module_pattern": "1",
     "module_value": "2",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "gibbering mouther - engulf 2"
   },
   {
     "name_or_header": "Tremor Signs",
@@ -1173,7 +1250,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "",
     "module_pattern": "",
     "module_value": "subtle",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "tremor signs - add subtle"
   },
   {
     "name_or_header": "Decaying (rune) (x2)",
@@ -1194,7 +1272,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "",
     "module_pattern": "",
     "module_value": "acid",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "decaying rune - remove acid - lesser"
   },
   {
     "name_or_header": "_extra_ Decaying (rune)",
@@ -1215,7 +1294,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "",
     "module_pattern": "",
     "module_value": "acid",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "decaying rune - remove acid - greater"
   },
   {
     "name_or_header": "Mycoweave Shield (x3)",
@@ -1236,7 +1316,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": ">R<",
     "module_value": ">F<",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "mycoweave shield - activation - lesser"
   },
   {
     "name_or_header": "_extra_ Mycoweave Shield",
@@ -1257,7 +1338,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": ">R<",
     "module_value": ">F<",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "mycoweave shield - activation - greater"
   },
   {
     "name_or_header": "_extra_ Mycoweave Shield",
@@ -1278,7 +1360,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": ">R<",
     "module_value": ">F<",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "mycoweave shield - activation - major"
   },
   {
     "name_or_header": "Dread Secret",
@@ -1299,7 +1382,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.duration.value",
     "module_pattern": "until the start of your next turn",
     "module_value": "varies",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "dread secret - duration"
   },
   {
     "name_or_header": "Elemental Instinct",
@@ -1320,7 +1404,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "the rage trait.",
     "module_value": "the rage trait while you are raging.",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "elemental instinct - rage"
   },
   {
     "name_or_header": "Hydraulic Push",
@@ -1341,7 +1426,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "<p>You call forth a powerful blast of pressurized water that bludgeons the target and knocks it back. Make a ranged spell attack roll.</p>\n<hr />\n<p><strong>Critical Success</strong> The target takes 6d6 bludgeoning damage and is knocked back 10 feet.</p>\n<p><strong>Success</strong> The target takes 3d6 bludgeoning damage and is knocked back 5 feet.</p>",
     "module_value": "<p>You call forth a powerful blast of pressurized water that deals 3d6 bludgeoning damage and knocks the target back. Make a ranged spell attack roll.</p>\n<hr />\n<p><strong>Critical Success</strong> The target takes double damage and is knocked back 10 feet.</p>\n<p><strong>Success</strong> The target takes full  damage and is knocked back 5 feet.</p>",
-    "module_comment": "a bit ugly"
+    "module_comment": "a bit ugly",
+    "module_pid": "hydraulic push - critical damage"
   },
   {
     "name_or_header": "Briny Bolt",
@@ -1362,7 +1448,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "<p>You hurl a bolt of saltwater from your extended hand. Make a ranged spell attack against a target within range.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature takes 4d6 bludgeoning damage and is @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Blinded} for 1 round and @UUID[Compendium.pf2e.conditionitems.Item.TkIyaNPgTZFBCCuh]{Dazzled} for 1 minute as saltwater sprays into its eyes. The creature can spend an Interact action to rub its eyes and end the blinded condition, but not the dazzled condition.</p>\n<p><strong>Success</strong> The creature takes 2d6 bludgeoning damage and is blinded for 1 round. The creature can spend an Interact action wiping the salt water from its eyes to end the blinded condition.</p>",
     "module_value": "<p>You hurl a bolt of saltwater from your extended hand, which deals 2d6 bludgeoning damage. Make a ranged spell attack against a target within range.</p>\n<hr />\n<p><strong>Critical Success</strong> The creature takes double damage and is @UUID[Compendium.pf2e.conditionitems.Item.XgEqL1kFApUbl5Z2]{Blinded} for 1 round and @UUID[Compendium.pf2e.conditionitems.Item.TkIyaNPgTZFBCCuh]{Dazzled} for 1 minute as saltwater sprays into its eyes. The creature can spend an Interact action to rub its eyes and end the blinded condition, but not the dazzled condition.</p>\n<p><strong>Success</strong> The creature takes full damage and is blinded for 1 round. The creature can spend an Interact action wiping the salt water from its eyes to end the blinded condition.</p>",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "briny bolt - critical damage"
   },
   {
     "name_or_header": "Kelizandri",
@@ -1383,7 +1470,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.spells.1",
     "module_pattern": "Compendium.pf2e.spells-srd.Item.4koZzrnMXhhosn0D",
     "module_value": "Compendium.pf2e.spells-srd.Item.jfVCuOpzC6mUrf6f",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "kelizandri - domain - fear"
   },
   {
     "name_or_header": "Ranginori",
@@ -1404,7 +1492,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.spells.4",
     "module_pattern": "Compendium.pf2e.spells-srd.Item.A2JfEKe6BZcTG1S8",
     "module_value": "Compendium.pf2e.spells-srd.Item.6XscENSWyYRHqK0A",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "ranginori - domain - fly"
   },
   {
     "name_or_header": "Fluid Form Staff (x3)",
@@ -1425,7 +1514,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "<ul>\n<li><strong>1st",
     "module_value": "<ul>\n<li><strong>Cantrip</strong> <em>@UUID[Compendium.pf2e.spells-srd.Item.MPxbKoR54gkYkqLO]{Gouging Claw}</em></li>\n<li><strong>1st",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "fluid form staff - cantrip - lesser"
   },
   {
     "name_or_header": "_extra_ Fluid Form Staff",
@@ -1446,7 +1536,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "<ul>\n<li><strong>1st",
     "module_value": "<ul>\n<li><strong>Cantrip</strong> <em>@UUID[Compendium.pf2e.spells-srd.Item.MPxbKoR54gkYkqLO]{Gouging Claw}</em></li>\n<li><strong>1st",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "fluid form staff - cantrip - greater"
   },
   {
     "name_or_header": "_extra_ Fluid Form Staff",
@@ -1467,7 +1558,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "<ul>\n<li><strong>1st",
     "module_value": "<ul>\n<li><strong>Cantrip</strong> <em>@UUID[Compendium.pf2e.spells-srd.Item.MPxbKoR54gkYkqLO]{Gouging Claw}</em></li>\n<li><strong>1st",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "fluid form staff - cantrip - major"
   },
   {
     "name_or_header": "Kineticist Dedication",
@@ -1488,7 +1580,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.rules.5",
     "module_pattern": "",
     "module_value": "{\"key\":\"ActiveEffectLike\",\"mode\":\"upgrade\",\"path\":\"system.skills.nat.rank\",\"value\":1}",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "kineticist dedication - trained skill - automation"
   },
   {
     "name_or_header": "_extra_ Kineticist Dedication",
@@ -1509,7 +1602,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "",
     "module_value": "You become trained in Nature; if you were already trained in Nature, you instead become trained in a skill of your choice. ",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "kineticist dedication - trained skill - description"
   },
   {
     "name_or_header": "Nugrah",
@@ -1530,7 +1624,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.spelldc.value",
     "module_pattern": "21",
     "module_value": "11",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "nugrah - spell dc"
   },
   {
     "name_or_header": "Reverse Engineer",
@@ -1551,7 +1646,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.level.value",
     "module_pattern": "2",
     "module_value": "4",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "reverse engineer - level"
   },
   {
     "name_or_header": "Skymetal Striker",
@@ -1572,7 +1668,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "Quickened 2} until the end of its next turn",
     "module_value": "Quickened 1} for 2 rounds",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "skymetal striker - quickened"
   },
   {
     "name_or_header": "Stunned",
@@ -1593,7 +1690,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "You can't act.",
     "module_value": "You can't take reactions.",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "stunned - cant act"
   },
   {
     "name_or_header": "Covered Reload",
@@ -1604,7 +1702,7 @@ export const allGeneratedCorrections = [
     "severity": 2,
     "reasoning": "the only way this can work RAW is if reloading is considered a \"particularly unobtrusive action\".  But, Paizo writers usually call such GM-fiat advantages out when they happen, e.g. with \"particularly helpful\" persistent damage removal.",
     "confidence": 2,
-    "proposed_fix": "Append: \"Reloading this way does make you cease being hidden.\"",
+    "proposed_fix": "Append: \"Reloading this way does not make you cease being hidden.\"",
     "fix_reliability": 4,
     "fix_commentary": "",
     "discussion_link": "https://paizo.com/threads/rzs43nrw?Covered-Reload-doesnt-work-with-Hide",
@@ -1614,7 +1712,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "",
     "module_value": " Reloading this way does make you cease being hidden.",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "covered reload - hidden"
   },
   {
     "name_or_header": "Rain of Bolts",
@@ -1635,7 +1734,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "damage. This",
     "module_value": "damage. Each creature in the area must attempt a @Check[type:reflex|dc:resolve(@actor.attributes.classOrSpellDC.value)|traits:damaging-effect] save against the higher of your class DC or spell DC. This",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "rain of bolts - save"
   },
   {
     "name_or_header": "Arcane Shroud",
@@ -1656,7 +1756,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "@UUID[Compendium.pf2e.spells-srd.Item.YrzBLPLd3r9m6t1p]{Fire Shield}",
     "module_value": "@UUID[Compendium.pf2e.spells-srd.Item.Fr58LDSrbndgld9n]{Resist Energy}",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "arcane shroud - fire shield"
   },
   {
     "name_or_header": "Faerie Dragon",
@@ -1677,70 +1778,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.attributes.perception.value",
     "module_pattern": "16",
     "module_value": "6",
-    "module_comment": ""
-  },
-  {
-    "name_or_header": "Percussive Impact",
-    "subheader": "",
-    "source": "Firebrands pg. 90",
-    "issue_type": "Inconsistency",
-    "issue_description": "The spell doesn't mention the damage doubling on a critical hit",
-    "severity": 3,
-    "reasoning": "This could be intended (for balance reasons), but could just as well be a mistake - hard to say.  Almost every other attack spell deals double damage on a critical hit.",
-    "confidence": 2,
-    "proposed_fix": "Clarify that on a critical success the target takes double damage.",
-    "fix_reliability": 3,
-    "fix_commentary": "",
-    "discussion_link": "https://www.reddit.com/r/Pathfinder2e/comments/155l87g/kineticist_fresh_produce_impulse_scaling/",
-    "sorting_grouping": "120",
-    "module_uuid": "Compendium.pf2e.spells-srd.Item.iG1USiSRXMjCDGAr",
-    "module_action": "FIND_AND_REPLACE",
-    "module_field_key": "system.description.value",
-    "module_pattern": "critical success, the",
-    "module_value": "critical success, you deal double the bludgeoning damage and",
-    "module_comment": ""
-  },
-  {
-    "name_or_header": "Murderous Vine",
-    "subheader": "",
-    "source": "Secrets of Magic pg. 117",
-    "issue_type": "Inconsistency",
-    "issue_description": "The spell doesn't mention the damage doubling on a critical hit",
-    "severity": 3,
-    "reasoning": "This could be intended (for balance reasons), but could just as well be a mistake - hard to say.  Almost every other attack spell deals double damage on a critical hit.",
-    "confidence": 2,
-    "proposed_fix": "Clarify that on a critical success the target takes double damage.",
-    "fix_reliability": 3,
-    "fix_commentary": "",
-    "discussion_link": "",
-    "sorting_grouping": "121",
-    "module_uuid": "Compendium.pf2e.spells-srd.Item.kCgkreCT6g0dipMd",
-    "module_action": "FIND_AND_REPLACE",
-    "module_field_key": "system.description.value",
-    "module_pattern": "piercing damage. At",
-    "module_value": "piercing damage. On a critical success, the target takes double damage. At",
-    "module_comment": ""
-  },
-  {
-    "name_or_header": "Tremor",
-    "subheader": "",
-    "source": "Rage of Elements pg. 26",
-    "issue_type": "Inconsistency",
-    "issue_description": "Scales in a strange manner, starts with 1d8 damage but then scales by 1d10",
-    "severity": 3,
-    "reasoning": "99% of damaging abilities in this game start and heighten with the same sizes of dice",
-    "confidence": 2,
-    "proposed_fix": "Replace \"1d10\" with \"1d8\"",
-    "fix_reliability": 3,
-    "fix_commentary": "alternatively, increase base damage to 1d10, but d8 fits other impulses better",
-    "discussion_link": "https://www.reddit.com/r/Pathfinder2e/comments/15o8c3x/earth_kinetics_tremor_question/",
-    "sorting_grouping": "50",
-    "module_uuid": "Compendium.pf2e.feats-srd.Item.r5vSplcFXtTS0kOB",
-    "module_action": "FIND_AND_REPLACE",
-    "module_field_key": "system.description.value",
-    "module_pattern": "<p>You unleash a small, localized tremor in a @Template[type:burst|distance:10] within 30 feet. Each creature in the area takes @Damage[(1d8+(floor((@actor.level -1)/2))d10)[bludgeoning]] damage with a @Check[type:fortitude|dc:resolve(@actor.attributes.classDC.value)|basic:true] save against your class DC. A creature that critically fails is knocked @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{Prone}. Earth and stone in the area is difficult terrain until the start of your next turn.</p>\n<hr />\n<p><strong>Level (+2)</strong> The damage increases by 1d10.</p>",
-    "module_value": "<p>You unleash a small, localized tremor in a @Template[type:burst|distance:10] within 30 feet. Each creature in the area takes @Damage[(1d8+(floor((@actor.level -1)/2))d8)[bludgeoning]] damage with a @Check[type:fortitude|dc:resolve(@actor.attributes.classDC.value)|basic:true] save against your class DC. A creature that critically fails is knocked @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{Prone}. Earth and stone in the area is difficult terrain until the start of your next turn.</p>\n<hr />\n<p><strong>Level (+2)</strong> The damage increases by 1d8.</p>",
-    "module_comment": "this is UGLY but right now it's the only way I can make two small edits in the same field without worrying"
+    "module_comment": "",
+    "module_pid": "faerie dragon - perception"
   },
   {
     "name_or_header": "Fresh Produce",
@@ -1755,13 +1794,80 @@ export const allGeneratedCorrections = [
     "fix_reliability": 3,
     "fix_commentary": "",
     "discussion_link": "https://www.reddit.com/r/Pathfinder2e/comments/155l87g/kineticist_fresh_produce_impulse_scaling/",
-    "sorting_grouping": "51",
+    "sorting_grouping": "",
     "module_uuid": "Compendium.pf2e.feats-srd.Item.IcAEMf94XoTvtzAO",
     "module_action": "FIND_AND_REPLACE",
     "module_field_key": "system.description.value",
     "module_pattern": "<p>You grow a nourishing nut, vegetable, seed, or fruit. Choose a creature in your kinetic aura. The produce grows in their open hand, or at their feet if they have no open hands. The produce has light Bulk. A creature can eat it with an Interact action to regain 1d4+1 HP; this is a healing vitality effect. The creature feels full for 10 minutes, during which it has resistance 2 to void damage and can't eat another piece of produce. Produce not consumed by the start of your next turn withers away.</p>\n<p>@UUID[Compendium.pf2e.feat-effects.Item.2GWZgsvMJF9DN0DO]{Effect: Fresh Produce}</p>\n<hr />\n<p><strong>Level (+2)</strong> The healing increases by 1d4+5, and the resistance increases by 2.</p>\n<p>[[/r ((floor((max(1,@actor.level)-1)/2)+1)d4+(floor((max(1,@actor.level)-1)/2)*5+1))[vitality,healing]]]{Leveled HP}</p>",
     "module_value": "<p>You grow a nourishing nut, vegetable, seed, or fruit. Choose a creature in your kinetic aura. The produce grows in their open hand, or at their feet if they have no open hands. The produce has light Bulk. A creature can eat it with an Interact action to regain 1d4+4 HP; this is a healing vitality effect. The creature feels full for 10 minutes, during which it has resistance 2 to void damage and can't eat another piece of produce. Produce not consumed by the start of your next turn withers away.</p>\n<p>@UUID[Compendium.pf2e.feat-effects.Item.2GWZgsvMJF9DN0DO]{Effect: Fresh Produce}</p>\n<hr />\n<p><strong>Level (+2)</strong> The healing increases by 1d4+5, and the resistance increases by 2.</p>\n<p>[[/r (ceil(max(1,@actor.level)/2))d4+ceil(max(1,@actor.level)/2)*5[vitality,healing]]]{Leveled HP}</p>",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "fresh produce - numbers"
+  },
+  {
+    "name_or_header": "Tremor",
+    "subheader": "",
+    "source": "Rage of Elements pg. 26",
+    "issue_type": "Inconsistency",
+    "issue_description": "Scales in a strange manner, starts with 1d8 damage but then scales by 1d10",
+    "severity": 3,
+    "reasoning": "99% of damaging abilities in this game start and heighten with the same sizes of dice",
+    "confidence": 2,
+    "proposed_fix": "Replace \"1d10\" with \"1d8\"",
+    "fix_reliability": 3,
+    "fix_commentary": "alternatively, increase base damage to 1d10, but d8 fits other impulses better",
+    "discussion_link": "https://www.reddit.com/r/Pathfinder2e/comments/15o8c3x/earth_kinetics_tremor_question/",
+    "sorting_grouping": "",
+    "module_uuid": "Compendium.pf2e.feats-srd.Item.r5vSplcFXtTS0kOB",
+    "module_action": "FIND_AND_REPLACE",
+    "module_field_key": "system.description.value",
+    "module_pattern": "<p>You unleash a small, localized tremor in a @Template[type:burst|distance:10] within 30 feet. Each creature in the area takes @Damage[(1d8+(floor((@actor.level -1)/2))d10)[bludgeoning]] damage with a @Check[type:fortitude|dc:resolve(@actor.attributes.classDC.value)|basic:true] save against your class DC. A creature that critically fails is knocked @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{Prone}. Earth and stone in the area is difficult terrain until the start of your next turn.</p>\n<hr />\n<p><strong>Level (+2)</strong> The damage increases by 1d10.</p>",
+    "module_value": "<p>You unleash a small, localized tremor in a @Template[type:burst|distance:10] within 30 feet. Each creature in the area takes @Damage[(1d8+(floor((@actor.level -1)/2))d8)[bludgeoning]] damage with a @Check[type:fortitude|dc:resolve(@actor.attributes.classDC.value)|basic:true] save against your class DC. A creature that critically fails is knocked @UUID[Compendium.pf2e.conditionitems.Item.j91X7x0XSomq8d60]{Prone}. Earth and stone in the area is difficult terrain until the start of your next turn.</p>\n<hr />\n<p><strong>Level (+2)</strong> The damage increases by 1d8.</p>",
+    "module_comment": "this is UGLY but right now it's the only way I can make two small edits in the same field without worrying",
+    "module_pid": "tremor - numbers"
+  },
+  {
+    "name_or_header": "Percussive Impact",
+    "subheader": "",
+    "source": "Firebrands pg. 90",
+    "issue_type": "Missing rule",
+    "issue_description": "The spell doesn't mention the damage doubling on a critical hit",
+    "severity": 3,
+    "reasoning": "This could be intended (for balance reasons), but could just as well be a mistake - hard to say.  Almost every other attack spell deals double damage on a critical hit.",
+    "confidence": 2,
+    "proposed_fix": "Clarify that on a critical success the target takes double damage.",
+    "fix_reliability": 3,
+    "fix_commentary": "",
+    "discussion_link": "",
+    "sorting_grouping": "120",
+    "module_uuid": "Compendium.pf2e.spells-srd.Item.iG1USiSRXMjCDGAr",
+    "module_action": "FIND_AND_REPLACE",
+    "module_field_key": "system.description.value",
+    "module_pattern": "critical success, the",
+    "module_value": "critical success, you deal double the bludgeoning damage and",
+    "module_comment": "",
+    "module_pid": "percussive impact - critical"
+  },
+  {
+    "name_or_header": "Murderous Vine",
+    "subheader": "",
+    "source": "Secrets of Magic pg. 117",
+    "issue_type": "Missing rule",
+    "issue_description": "The spell doesn't mention the damage doubling on a critical hit",
+    "severity": 3,
+    "reasoning": "This could be intended (for balance reasons), but could just as well be a mistake - hard to say.  Almost every other attack spell deals double damage on a critical hit.",
+    "confidence": 2,
+    "proposed_fix": "Clarify that on a critical success the target takes double damage.",
+    "fix_reliability": 3,
+    "fix_commentary": "",
+    "discussion_link": "",
+    "sorting_grouping": "121",
+    "module_uuid": "Compendium.pf2e.spells-srd.Item.kCgkreCT6g0dipMd",
+    "module_action": "FIND_AND_REPLACE",
+    "module_field_key": "system.description.value",
+    "module_pattern": "piercing damage. At",
+    "module_value": "piercing damage. On a critical success, the target takes double damage. At",
+    "module_comment": "",
+    "module_pid": "murderous vine - critical"
   },
   {
     "name_or_header": "Elementally Infused",
@@ -1782,7 +1888,8 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "@UUID[Compendium.pf2e.spells-srd.Item.BX5UIAUarWG43Fg2]{Root Reading}",
     "module_value": "@UUID[Compendium.pf2e.spells-srd.Item.9I8mp7RkjeXbkYfx]{Timber}",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "elementally infused - wood"
   },
   {
     "name_or_header": "Voice of the Elements",
@@ -1803,6 +1910,7 @@ export const allGeneratedCorrections = [
     "module_field_key": "system.description.value",
     "module_pattern": "with mindless elementals",
     "module_value": "with elementals that don't speak a language",
-    "module_comment": ""
+    "module_comment": "",
+    "module_pid": "voice of the elements - mindless elementals"
   }
 ]

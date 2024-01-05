@@ -21,6 +21,7 @@ HEADERS_LONG_TO_SHORT = {
     '_module_pattern': 'module_pattern',
     '_module_value': 'module_value',
     '_module_comment': 'module_comment',
+    '_module_pid': 'module_pid',
 }
 
 
