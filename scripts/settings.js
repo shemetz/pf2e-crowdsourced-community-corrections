@@ -59,15 +59,18 @@ export const CorrectionsMenu = class extends FormApplication {
     const settingMinFixReliability = game.settings.get(MODULE_ID, 'min-fix-reliability')
     const allCorrections = getAllCorrectionsWithExtraFields()
     const enabledCorrectionsCount = allCorrections.filter(c => !c.isFilteredOut).length
+    const newCorrectionsCount = allCorrections.filter(c => !c.isFilteredOut && !c.wasApplied).length
     return {
       settingMinConfidence,
       settingMinFixReliability,
       allCorrections,
       enabledCorrectionsCount,
+      newCorrectionsCount,
     }
   }
 
   activateListeners (_html) {
+    const rerender = () => this.render()
     this.element.find('.apply-selected-corrections').on('click', async () => {
       const enabledCorrectionsCount = getAllCorrectionsWithExtraFields().filter(c => !c.isFilteredOut).length
       return Dialog.confirm({
@@ -77,12 +80,14 @@ export const CorrectionsMenu = class extends FormApplication {
 <p>This will permanently change compendium data in your world, and cannot be undone except by reinstalling or updating the pf2e system.</p>
 `,
         yes: () => {
+          const extra = enabledCorrectionsCount > 10 ? '  (This may take a while)' : ''
           const startNotificationId = ui.notifications.info(
-            `Applying all ${enabledCorrectionsCount} enabled corrections...`,
+            `Applying all ${enabledCorrectionsCount} enabled corrections...${extra}`,
             { permanent: true })
           patchAllFiltered().then((documentsUpdated) => {
             ui.notifications.info(`Done applying corrections.  ${documentsUpdated.length} documents were updated.`,
               { permanent: true })
+            rerender()
           }).finally(() => {
             ui.notifications.remove(startNotificationId)
           })
@@ -95,16 +100,16 @@ export const CorrectionsMenu = class extends FormApplication {
       const success = await patchOne(correction)
       if (success) {
         ui.notifications.info(`Done applying correction to ${correction.name_or_header}`)
-        this.render()
+        rerender()
       }
     })
     this.element.find('#setting-min-confidence').on('input', async event => {
       await game.settings.set(MODULE_ID, 'min-confidence', parseInt(event.target.value))
-      this.render()
+      rerender()
     })
     this.element.find('#setting-min-fix-reliability').on('input', async event => {
       await game.settings.set(MODULE_ID, 'min-fix-reliability', parseInt(event.target.value))
-      this.render()
+      rerender()
     })
   }
 
