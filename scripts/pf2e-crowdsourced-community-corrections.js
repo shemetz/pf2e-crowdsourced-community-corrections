@@ -69,6 +69,7 @@ const patchObjectWithCorrections = async (patches) => {
       module_field_key: fieldKey,
       module_pattern: pattern,
       module_value: value,
+      module_pid: patch_id,
     } = patch
     if (fieldKey.includes('system.traits.value'))
       return errorNotification(`Do not use the system.traits.value field directly!`)
@@ -154,6 +155,12 @@ const patchObjectWithCorrections = async (patches) => {
       case 'OVERWRITE': // no check to see if it was already replaced;  this one just has to be applied over and over
         patchUpdate[fieldKey] = value
         break
+      case 'HARDCODED_HANDLING':
+        switch (patch_id) {
+          default:
+            return errorNotification(`Unknown hardcoded patch ID: ${patch_id}`)
+        }
+        break
       default:
         return errorNotification(`Unknown action: ${action}`)
     }
@@ -197,11 +204,24 @@ export const getAllCorrectionsWithExtraFields = () => {
   return allGeneratedCorrections.map(
     c => ({
       ...c,
+      compendiumLinkHtml: getCompendiumLinkHtml(c),
       isFilteredOut: c.confidence < settingMinConfidence || c.fix_reliability < settingMinFixReliability,
       wasApplied: patchHistory.some(p => p.pid === c.module_pid),
       isExtra: c.name_or_header.includes('_extra_'),
     }),
   )
+}
+
+const getCompendiumLinkHtml = (correction) => {
+  const dataUuid = correction.module_uuid
+  const dataId = correction.module_uuid.split('.').pop()
+  const dataPack = correction.module_uuid.split('.')[1]
+  const text = correction.name_or_header.length <= 40
+    ? correction.name_or_header
+    : (correction.name_or_header.substring(0, 40) + '...')
+  return `
+      <a class="content-link" data-pack="${dataPack}" data-uuid="${dataUuid}" data-id="${dataId}"><i class="fas fa-suitcase"></i>${text}</a>
+    `
 }
 
 export const patchEverything = async () => {
@@ -283,9 +303,21 @@ export const patchOne = async (correction) => {
 
 const pf2eSystemReadyHook = async () => {
   if (!game.user.isGM) return // only GMs have the permissions (and need) to do all this
+  window.pf2eCccc = { patchEverything, unsetPatchMarkers, CorrectionsMenu }
   const numOfCorrections = Object.keys(allGeneratedCorrections).length
   console.log(`${MODULE_NAME_SHORT} | Initializing, with ${numOfCorrections} error corrections in json file`)
-  window.pf2eCccc = { patchEverything, unsetPatchMarkers, CorrectionsMenu }
+  // if compendiums were reset (e.g. after system update) - reset stored patch history
+  const patchHistory = game.settings.get(MODULE_ID, 'patch-history')
+  const firstPatch = patchHistory?.[0]
+  if (firstPatch && firstPatch.uuid.includes('Compendium.')) {
+    const document = await fromUuid(firstPatch.uuid)
+    if (document?.flags[MODULE_ID]?.['patched'] !== true) {
+      console.log(`${MODULE_NAME_SHORT} | Compendiums were reverted, resetting patch history`)
+      const newPatchHistory = patchHistory.filter(p => !p.uuid.includes('Compendium.'))
+      await game.settings.set(MODULE_ID, 'patch-history', newPatchHistory)
+      ui.notifications.info(`${MODULE_NAME_SHORT} | Compendiums were reverted, you'll need to reapply patches`)
+    }
+  }
 }
 
 Hooks.once('init', registerSettings)
