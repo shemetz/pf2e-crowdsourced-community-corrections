@@ -60,8 +60,8 @@ export const allGeneratedCorrections = [
     "module_uuid": "Compendium.pf2e.spells-srd.Item.eSEmqOBuywoJ6tYd",
     "module_action": "FIND_AND_REPLACE",
     "module_field_key": "system.description.value",
-    "module_pattern": "by 4d4",
-    "module_value": "by 2d4",
+    "module_pattern": "each increase by 4d4",
+    "module_value": "each increase by 2d4",
     "module_comment": "",
     "module_pid": "inner radiance torrent - heighten - description"
   },
@@ -783,7 +783,7 @@ export const allGeneratedCorrections = [
     "fix_commentary": "see a larger list of such spells (and some uncertain ones) here",
     "discussion_link": "https://www.reddit.com/r/Pathfinder2e/comments/wfab8i/a_lot_of_spells_and_abilities_need_to_get_the/",
     "sorting_grouping": "100",
-    "module_uuid": "",
+    "module_uuid": "Compendium.pf2e.spells-srd.Item.My7FvAoLYgGDDBzy",
     "module_action": "HARDCODED_HANDLING",
     "module_field_key": "",
     "module_pattern": "",
@@ -896,7 +896,7 @@ export const allGeneratedCorrections = [
     "module_uuid": "Compendium.pf2e.spells-srd.Item.GUeRTriJkMlMlVrk",
     "module_action": "FIND_AND_REPLACE",
     "module_field_key": "system.target.value",
-    "module_pattern": "1 mindless undead creature with a level no greater than bind undead's spell level",
+    "module_pattern": "1 mindless undead creature with a level no greater than bind undead's spell rank",
     "module_value": "1 mindless undead creature with a level no greater than 3 (+2 per heighten)",
     "module_comment": "I was a bit lazy here",
     "module_pid": "bind undead - heighten target"

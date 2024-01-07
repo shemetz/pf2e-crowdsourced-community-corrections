@@ -1,5 +1,6 @@
 import { allGeneratedCorrections } from './generatedCorrections.js'
 import { CorrectionsMenu, MODULE_ID, MODULE_NAME_SHORT, registerSettings } from './settings.js'
+import { splitHardcodedCorrections } from './hardcodedCorrections.js'
 
 const lockedCompendiums = new Set()
 
@@ -206,10 +207,16 @@ export const getAllCorrectionsWithExtraFields = () => {
       ...c,
       compendiumLinkHtml: getCompendiumLinkHtml(c),
       isFilteredOut: c.confidence < settingMinConfidence || c.fix_reliability < settingMinFixReliability,
-      wasApplied: patchHistory.some(p => p.pid === c.module_pid),
+      wasApplied: wasApplied(c, patchHistory),
       isExtra: c.name_or_header.includes('_extra_'),
     }),
   )
+}
+
+const wasApplied = (correction, patchHistory) => {
+  return correction.module_action !== 'HARDCODED_HANDLING'
+    ? patchHistory.some(p => p.pid === correction.module_pid)
+    : patchHistory.some(p => p.pid.includes(correction.module_pid))
 }
 
 const getCompendiumLinkHtml = (correction) => {
@@ -224,23 +231,21 @@ const getCompendiumLinkHtml = (correction) => {
     `
 }
 
-export const patchEverything = async () => {
+const patchMultiple = async (corrections) => {
   console.log(`${MODULE_NAME_SHORT} | Starting to patch documents...`)
   // group by uuid
-  const correctionsByUuid = getAllCorrectionsWithExtraFields().reduce((acc, correction) => {
-    if (correction.isFilteredOut) return acc
+  const correctionsByUuid = corrections.reduce((acc, correction) => {
     const { module_uuid: uuid } = correction
     if (!acc[uuid]) acc[uuid] = []
     acc[uuid].push(correction)
     return acc
   }, {})
-
+  // unlock compendiums
   for (const corrections of Object.values(correctionsByUuid)) {
     await unlockCompendium(corrections[0])
   }
   const wereUpdated = []
   let hadErrors = false
-  console.log(`${MODULE_NAME_SHORT} | (Unlocked ${lockedCompendiums.size} compendiums)`)
   const appliedPatches = []
   for (const corrections of Object.values(correctionsByUuid)) {
     try {
@@ -248,7 +253,7 @@ export const patchEverything = async () => {
       if (patchResult === true) {
         wereUpdated.push(corrections[0])
         for (const correction of corrections) {
-          console.log(`${MODULE_NAME_SHORT} | Applied: ${correction.module_pid}`)
+          console.debug(`${MODULE_NAME_SHORT} | Applied: ${correction.module_pid}`)
           appliedPatches.push({
             pid: correction.module_pid,
             uuid: correction.module_uuid,
@@ -263,47 +268,47 @@ export const patchEverything = async () => {
       hadErrors = true
     }
   }
+  await lockAllRecentlyUnlockedCompendiums()
   if (wereUpdated.length > 0) {
-    console.log(`${MODULE_NAME_SHORT} | Done patching documents:`, wereUpdated.map(c => c.name_or_header))
+    console.debug(`${MODULE_NAME_SHORT} | Done patching documents:`, wereUpdated.map(c => c.name_or_header))
     if (hadErrors)
       console.warn(`${MODULE_NAME_SHORT} | Had errors while patching documents!`)
     const allAppliedPatches = game.settings.get(MODULE_ID, 'patch-history')
     allAppliedPatches.push(...appliedPatches)
-    console.log(`${MODULE_NAME_SHORT} | Applied ${appliedPatches.length} new patches`)
     await game.settings.set(MODULE_ID, 'patch-history', allAppliedPatches)
   } else if (hadErrors)
     console.warn(`${MODULE_NAME_SHORT} | No documents patched, but had errors`)
   else
     console.log(`${MODULE_NAME_SHORT} | No documents patched (all good)`)
-  await lockAllRecentlyUnlockedCompendiums()
   return wereUpdated
 }
 
-export const patchOne = async (correction) => {
-  await unlockCompendium(correction)
-  if (lockedCompendiums.size > 0) console.log(`${MODULE_NAME_SHORT} | (Unlocked ${lockedCompendiums.size} compendiums)`)
-  let success = null
-  try {
-    const patchResult = await patchObjectWithCorrections([correction])
-    if (patchResult === true) {
-      console.log(`${MODULE_NAME_SHORT} | Applied: ${correction.module_pid}`)
-      const allAppliedPatches = game.settings.get(MODULE_ID, 'patch-history')
-      allAppliedPatches.push({ pid: correction.module_pid, uuid: correction.module_uuid, timestamp: Date.now() })
-      await game.settings.set(MODULE_ID, 'patch-history', allAppliedPatches)
-      success = true
-    }
-  } catch (e) {
-    success = false
-    ui.notifications.error(`Error while patching ${correction.name_or_header} (${correction.module_uuid})`)
-    console.error(e)
+export const patchAllFiltered = () => {
+  console.log(`${MODULE_NAME_SHORT} | Applying all filtered corrections...`)
+  const patchHistory = game.settings.get(MODULE_ID, 'patch-history')
+  const allCorrectionsRaw = getAllCorrectionsWithExtraFields()
+  const allCorrections = []
+  for (const c of allCorrectionsRaw) {
+    if (c.isFilteredOut) continue
+    if (wasApplied(c, patchHistory)) continue
+    if (c.module_action === 'HARDCODED_HANDLING') {
+      allCorrections.push(...splitHardcodedCorrections(c))
+    } else
+      allCorrections.push(c)
   }
-  await lockAllRecentlyUnlockedCompendiums()
-  return success
+  return patchMultiple(allCorrections)
+}
+
+export const patchOne = async (correction) => {
+  if (correction.module_action === 'HARDCODED_HANDLING') {
+    return patchMultiple(splitHardcodedCorrections(correction)).then(wereUpdated => wereUpdated.length > 0)
+  } else
+    return patchMultiple([correction]).then(wereUpdated => wereUpdated.length > 0)
 }
 
 const pf2eSystemReadyHook = async () => {
   if (!game.user.isGM) return // only GMs have the permissions (and need) to do all this
-  window.pf2eCccc = { patchEverything, unsetPatchMarkers, CorrectionsMenu }
+  window.pf2eCccc = { patchAllFiltered, unsetPatchMarkers, CorrectionsMenu }
   const numOfCorrections = Object.keys(allGeneratedCorrections).length
   console.log(`${MODULE_NAME_SHORT} | Initializing, with ${numOfCorrections} error corrections in json file`)
   // if compendiums were reset (e.g. after system update) - reset stored patch history

@@ -1,6 +1,6 @@
 import {
   getAllCorrectionsWithExtraFields,
-  patchEverything,
+  patchAllFiltered,
   patchOne,
 } from './pf2e-crowdsourced-community-corrections.js'
 
@@ -80,7 +80,7 @@ export const CorrectionsMenu = class extends FormApplication {
           const startNotificationId = ui.notifications.info(
             `Applying all ${enabledCorrectionsCount} enabled corrections...`,
             { permanent: true })
-          patchEverything().then((documentsUpdated) => {
+          patchAllFiltered().then((documentsUpdated) => {
             ui.notifications.info(`Done applying corrections.  ${documentsUpdated.length} documents were updated.`,
               { permanent: true })
           }).finally(() => {
