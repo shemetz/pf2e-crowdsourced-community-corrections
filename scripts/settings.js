@@ -60,12 +60,16 @@ export const CorrectionsMenu = class extends FormApplication {
     const allCorrections = getAllCorrectionsWithExtraFields()
     const enabledCorrectionsCount = allCorrections.filter(c => !c.isFilteredOut).length
     const newCorrectionsCount = allCorrections.filter(c => !c.isFilteredOut && !c.wasApplied).length
+    const pf2eSystemVersion = game.system.version
+    const latestVerifiedVersion = game.modules.get(MODULE_ID).relationships.systems.first().compatibility.verified
     return {
       settingMinConfidence,
       settingMinFixReliability,
       allCorrections,
       enabledCorrectionsCount,
       newCorrectionsCount,
+      pf2eSystemVersion,
+      latestVerifiedVersion,
     }
   }
 
