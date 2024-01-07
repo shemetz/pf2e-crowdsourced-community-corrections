@@ -7,8 +7,7 @@
 
 FoundryVTT module for the PF2e system, which applies community-sourced corrections to pf2e compendiums.
 
-To install, [directly copy the manifest link for the latest release](https://github.com/shemetz/pf2e-crowdsourced-community-corrections/releases/latest/download/module.json)
-.
+To install, [directly copy the manifest link for the latest release](https://github.com/shemetz/pf2e-crowdsourced-community-corrections/releases/latest/download/module.json).
 
 # [Source of data - collaborative spreadsheet](https://docs.google.com/spreadsheets/d/1nZ95fXqnmutFx8HE8TLvJIFiRf3WN9EwkBv7yYLFdB4)
 
@@ -33,6 +32,5 @@ requiring this module to update and avoid breaking things).
 
 - Add backups or ability to revert patches (perhaps by storing the original altered field in a flag)
 - Automatically apply after pf2e system updates/migrations
-- Add ability to apply single patches
 - Apply patches to imported things too
 - Apply patches within character and NPC sheets too
