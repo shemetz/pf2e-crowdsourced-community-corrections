@@ -31,7 +31,7 @@ const handleArraysInDotNotation = (patchUpdate, originalDocData) => {
         // this is an array index
         const keyAsIndex = parseInt(keyPart)
         const keyUntilArray = keyParts.slice(0, i).join('.')
-        const array = getProperty(originalDocData, keyUntilArray)
+        const array = foundry.utils.getProperty(originalDocData, keyUntilArray)
         if (!Array.isArray(array)) {
           if (typeof array === 'object')
             continue // this is an object with a single digit string key, not an array
@@ -76,7 +76,7 @@ const patchObjectWithCorrections = async (patches) => {
       return errorNotification(`Do not use the system.traits.value field directly!`)
     if (fieldKey.includes('system.prerequisites.value'))
       return errorNotification(`Do not use the system.traits.value field directly!`)
-    const originalValue = fieldKey ? getProperty(originalDocData, fieldKey) : undefined
+    const originalValue = fieldKey ? foundry.utils.getProperty(originalDocData, fieldKey) : undefined
     if (fieldKey && originalValue === undefined && action !== 'OVERWRITE')
       return errorNotification(`Could not find value in field ${fieldKey}`)
     if (pattern !== '' && action !== 'FIND_AND_REPLACE')
@@ -161,7 +161,6 @@ const patchObjectWithCorrections = async (patches) => {
           default:
             return errorNotification(`Unknown hardcoded patch ID: ${patch_id}`)
         }
-        break
       default:
         return errorNotification(`Unknown action: ${action}`)
     }
