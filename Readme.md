@@ -13,7 +13,7 @@ To install, [directly copy the manifest link for the latest release](https://git
 
 # Features
 
-This module is in **EXPERIMENTAL** state, not yet ready for general use and not yet submitted to the general listing.
+This module is in **ALPHA** state, functional and somewhat stable but not pretty.
 
 When enabled, open the settings and find the Corrections Menu inside the module settings. That menu opens up a big
 mini-spreadsheet where you can choose your minimum numbers to filter through the list, and then can click a button to
@@ -21,6 +21,10 @@ apply the corrections (patching a few dozen compendium entries).
 
 This will last until a system update, which will revert these changes and require doing it again (potentially also
 requiring this module to update and avoid breaking things).
+
+If you like this module, please leave feedback on the github or on
+[the discord thread](https://discord.com/channels/880968862240239708/1189157820680114256); I might develop it more if
+you do!
 
 # Screenshots
 
@@ -34,3 +38,8 @@ requiring this module to update and avoid breaking things).
 - Automatically apply after pf2e system updates/migrations
 - Apply patches to imported things too
 - Apply patches within character and NPC sheets too
+
+# Licensing
+To the best of my understanding, no special licensing is required for this module;  it does not contain any full content
+from any Paizo book.  It only contains brief snippets of content - "patches" to override bits and pieces of content in
+the official pf2e system, which is a separate package.
