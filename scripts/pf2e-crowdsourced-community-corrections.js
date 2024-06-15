@@ -219,14 +219,19 @@ const wasApplied = (correction, patchHistory) => {
 }
 
 const getCompendiumLinkHtml = (correction) => {
+  const uuidSplit = correction.module_uuid.split('.')
   const dataUuid = correction.module_uuid
-  const dataId = correction.module_uuid.split('.').pop()
-  const dataPack = correction.module_uuid.split('.')[1]
+  const dataId = uuidSplit.pop()
+  const dataPack = uuidSplit[1]
+  const dataType = uuidSplit[uuidSplit.length - 2] // "Item" / "Actor" usually
   const text = correction.name_or_header.length <= 40
     ? correction.name_or_header
     : (correction.name_or_header.substring(0, 40) + '...')
   return `
-      <a class="content-link" data-pack="${dataPack}" data-uuid="${dataUuid}" data-id="${dataId}"><i class="fas fa-suitcase"></i>${text}</a>
+<a class="content-link" draggable="true" data-link data-uuid="${dataUuid}" data-id="${dataId}" data-type=${dataType} data-pack="${dataPack}">
+  <i class="fas fa-suitcase"></i>
+  ${text}
+</a>
     `
 }
 
