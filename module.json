@@ -2,7 +2,7 @@
   "id": "pf2e-crowdsourced-community-corrections",
   "title": "Pf2e Crowdsourced Community Corrections",
   "description": "Patches pf2e compendium documents to fix community-reported errors, as 'unofficial errata'.",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "compatibility": {
     "minimum": "12",
     "verified": "12"
@@ -70,8 +70,8 @@
         "type": "system",
         "manifest": "https://github.com/foundryvtt/pf2e/releases/download/latest/system.json",
         "compatibility": {
-          "minimum": "6.0.0",
-          "verified": "6.0.1"
+          "minimum": "6.2.0",
+          "verified": "6.2.1"
         }
       }
     ]
