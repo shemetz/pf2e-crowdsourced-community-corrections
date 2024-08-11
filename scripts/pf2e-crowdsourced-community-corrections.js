@@ -58,10 +58,13 @@ const patchObjectWithCorrections = async (patches) => {
   const document = await fromUuid(uuid)
   if (!document)
     return errorNotification(`Could not find document with UUID ${uuid}`)
-  const compendium = document?.compendium
+  const compendium = document.compendium
   if (!compendium)
     return errorNotification(`Could not find compendium for document with UUID ${uuid}`)
-  const originalDocData = document?.toObject()
+  if (document.flags?.[MODULE_ID]?.patched) {
+    return false
+  }
+  const originalDocData = document.toObject()
   const patchUpdate = {}
   const traits = originalDocData.system.traits?.value?.slice()  // .slice() = create copy
   for (const patch of patches) {
@@ -266,6 +269,18 @@ const patchMultiple = async (corrections) => {
           })
         }
       }
+      if (patchResult === false) {
+        for (const correction of corrections) {
+          console.debug(
+            `${MODULE_NAME_SHORT} | Found already-applied patch for this document, skipping ${correction.module_pid}`)
+          appliedPatches.push({
+            pid: correction.module_pid,
+            uuid: correction.module_uuid,
+            timestamp: -1,
+            module_version: -1,
+          })
+        }
+      }
     } catch (e) {
       ui.notifications.error(`Error while patching ${corrections[0].name_or_header} (${corrections[0].module_uuid})`)
       console.error(e)
@@ -273,13 +288,15 @@ const patchMultiple = async (corrections) => {
     }
   }
   await lockAllRecentlyUnlockedCompendiums()
+  if (appliedPatches.length > 0) {
+    const allAppliedPatches = game.settings.get(MODULE_ID, 'patch-history')
+    allAppliedPatches.push(...appliedPatches)
+    await game.settings.set(MODULE_ID, 'patch-history', allAppliedPatches)
+  }
   if (wereUpdated.length > 0) {
     console.debug(`${MODULE_NAME_SHORT} | Done patching documents:`, wereUpdated.map(c => c.name_or_header))
     if (hadErrors)
       console.warn(`${MODULE_NAME_SHORT} | Had errors while patching documents!`)
-    const allAppliedPatches = game.settings.get(MODULE_ID, 'patch-history')
-    allAppliedPatches.push(...appliedPatches)
-    await game.settings.set(MODULE_ID, 'patch-history', allAppliedPatches)
   } else if (hadErrors)
     console.warn(`${MODULE_NAME_SHORT} | No documents patched, but had errors`)
   else
