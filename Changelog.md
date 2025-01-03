@@ -1,7 +1,6 @@
-# Changelog
-All notable changes to this project will be documented in this file.
-
-This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## 0.5.2 - 2024-08-11
+- Updated to be compatible with pf2e v6.8.0, 2024 fall errata
+- Improved github workflow automation
 
 ## 0.5.1 - 2024-08-11
 - Fixed corrections not counting when done in other worlds within the same instance
