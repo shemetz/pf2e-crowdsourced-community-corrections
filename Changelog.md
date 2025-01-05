@@ -1,4 +1,7 @@
-## 0.5.2 - 2024-08-11
+## 0.5.3 - 2024-01-06
+- Fixed template not being packed (#1)
+
+## 0.5.2 - 2025-01-03
 - Updated to be compatible with pf2e v6.8.0, 2024 fall errata
 - Improved github workflow automation
 
