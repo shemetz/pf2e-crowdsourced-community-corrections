@@ -47,7 +47,7 @@ export const CorrectionsMenu = class extends FormApplication {
       ...super.defaultOptions,
       title: 'Pf2e CCC Configuration',
       id: 'corrections-menu',
-      template: `modules/${MODULE_ID}/templates/correctionsMenu.hbs`,
+      template: `modules/${MODULE_ID}/scripts/correctionsMenu.hbs`,
       height: 900,
       width: 1400,
       resizable: true,
