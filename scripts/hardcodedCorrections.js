@@ -10,7 +10,6 @@ export const splitHardcodedCorrections = (hardcodedCorrection) => {
 const SPELLS_THAT_NEED_AURA_TAG = [
   // 99% confidence
   ['Compendium.pf2e.spells-srd.Item.My7FvAoLYgGDDBzy', 'Antimagic Field'],
-  ['Compendium.pf2e.spells-srd.Item.wjJW9hWY5CkkMvY5', 'Diamond Dust'],
   ['Compendium.pf2e.spells-srd.Item.Vw2CNwlRRKABsuZi', 'Entrancing Eyes'],
   ['Compendium.pf2e.spells-srd.Item.28kgh0JzBO6pt38C', 'Focusing Hum'],
   ['Compendium.pf2e.spells-srd.Item.AspA30tzKCHFWRf0', 'Incendiary Aura'],
@@ -28,7 +27,6 @@ const SPELLS_THAT_NEED_AURA_TAG = [
   ['Compendium.pf2e.spells-srd.Item.HMTloW1hvRFJ5Z2D', 'Consuming Darkness'],
   ['Compendium.pf2e.spells-srd.Item.oahqARSgOGDRybBQ', 'Control Sand'],
   ['Compendium.pf2e.spells-srd.Item.fxRaWoeOGyi6THYH', 'Frenzied Revelry'],
-  ['Compendium.pf2e.spells-srd.Item.eCniO6INHNfc9Svr', 'Overflowing Sorrow'],
   ['Compendium.pf2e.spells-srd.Item.yfCykJ6cs0uUL79b', 'Radiant Heart of Devotion'],
   ['Compendium.pf2e.spells-srd.Item.YtJXpiu4ijkB6nP2', 'Unbreaking Wave Barrier'],
   // 60% confidence
