@@ -123,7 +123,7 @@ export const CorrectionsMenu = class extends HandlebarsApplicationMixin(Applicat
         no: { label: 'Cancel' },
       })
     })
-    this.element.querySelector('.apply-one-correction').addEventListener('click', async (el) => {
+    this.element.querySelector('.apply-one-correction')?.addEventListener('click', async (el) => {
       const modulePid = el.currentTarget.dataset.modulePid
       const correction = getAllCorrectionsWithExtraFields().find(c => c.module_pid === modulePid)
       const success = await patchOne(correction)
@@ -140,9 +140,5 @@ export const CorrectionsMenu = class extends HandlebarsApplicationMixin(Applicat
       await game.settings.set(MODULE_ID, 'min-fix-reliability', parseInt(event.target.value))
       rerender()
     })
-  }
-
-  async _updateObject (event, formData) {
-    return Promise.resolve(undefined)
   }
 }
