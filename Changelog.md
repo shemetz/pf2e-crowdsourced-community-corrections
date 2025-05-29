@@ -1,4 +1,7 @@
-## 0.5.3 - 2024-01-06
+## 0.5.4 - 2025-05-30
+- Updated to be compatible with Foundry V13, pf2e v7.0.0, 2025 spring errata
+
+## 0.5.3 - 2025-01-06
 - Fixed template not being packed (#1)
 
 ## 0.5.2 - 2025-01-03
