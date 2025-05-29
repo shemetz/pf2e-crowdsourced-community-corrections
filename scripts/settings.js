@@ -4,6 +4,8 @@ import {
   patchOne,
 } from './pf2e-crowdsourced-community-corrections.js'
 
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
+
 export const MODULE_ID = 'pf2e-crowdsourced-community-corrections'
 export const MODULE_NAME_SHORT = 'Pf2e CCC'
 export const registerSettings = function () {
@@ -41,20 +43,32 @@ export const registerSettings = function () {
   })
 }
 
-export const CorrectionsMenu = class extends FormApplication {
-  static get defaultOptions () {
-    return {
-      ...super.defaultOptions,
+export const CorrectionsMenu = class extends HandlebarsApplicationMixin(ApplicationV2) {
+  /** @override */
+  static DEFAULT_OPTIONS = {
+    id: 'corrections-menu-{id}',
+    classes: ['application'],
+    window: {
+      icon: 'fa-solid fa-wrench',
       title: 'Pf2e CCC Configuration',
-      id: 'corrections-menu',
-      template: `modules/${MODULE_ID}/scripts/correctionsMenu.hbs`,
-      height: 900,
-      width: 1400,
+      frame: true,
       resizable: true,
-    }
+    },
+    position: {
+      width: 1400,
+      height: 900,
+    },
   }
 
-  getData (_options) {
+  /** @override */
+  static PARTS = {
+    form: {
+      id: 'corrections-menu',
+      template: `modules/${MODULE_ID}/scripts/correctionsMenu.hbs`,
+    },
+  }
+
+  async _prepareContext (_options) {
     const settingMinConfidence = game.settings.get(MODULE_ID, 'min-confidence')
     const settingMinFixReliability = game.settings.get(MODULE_ID, 'min-fix-reliability')
     const allCorrections = getAllCorrectionsWithExtraFields()
@@ -73,32 +87,43 @@ export const CorrectionsMenu = class extends FormApplication {
     }
   }
 
-  activateListeners (_html) {
+  /** @override */
+  _onRender (context, options) {
+    super._onRender(context, options)
+
     const rerender = () => this.render()
-    this.element.find('.apply-selected-corrections').on('click', async () => {
+    this.element.querySelector('.apply-selected-corrections').addEventListener('click', async () => {
       const enabledCorrectionsCount = getAllCorrectionsWithExtraFields().filter(c => !c.isFilteredOut).length
-      return Dialog.confirm({
-        title: `Activate ${enabledCorrectionsCount} Corrections`,
+      return foundry.applications.api.DialogV2.confirm({
+        id: 'confirm-apply-corrections',
+        window: {
+          title: `Activate ${enabledCorrectionsCount} Corrections`,
+        },
         content: `
 <h2>Are you sure you want to do this?</h2>
 <p>This will permanently change compendium data in your world, and cannot be undone except by reinstalling or updating the pf2e system.</p>
 `,
-        yes: () => {
-          const extra = enabledCorrectionsCount > 10 ? '  (This may take a while)' : ''
-          const startNotificationId = ui.notifications.info(
-            `Applying all ${enabledCorrectionsCount} enabled corrections...${extra}`,
-            { permanent: true })
-          patchAllFiltered().then((documentsUpdated) => {
-            ui.notifications.info(`Done applying corrections.  ${documentsUpdated.length} documents were updated.`,
+        yes: {
+          label: 'Yes',
+          default: true,
+          callback: () => {
+            const extra = enabledCorrectionsCount > 10 ? '  (This may take a while)' : ''
+            const startNotificationId = ui.notifications.info(
+              `Applying all ${enabledCorrectionsCount} enabled corrections...${extra}`,
               { permanent: true })
-            rerender()
-          }).finally(() => {
-            ui.notifications.remove(startNotificationId)
-          })
+            patchAllFiltered().then((documentsUpdated) => {
+              ui.notifications.info(`Done applying corrections.  ${documentsUpdated.length} documents were updated.`,
+                { permanent: true })
+              rerender()
+            }).finally(() => {
+              ui.notifications.remove(startNotificationId)
+            })
+          },
         },
+        no: { label: 'Cancel' },
       })
     })
-    this.element.find('.apply-one-correction').on('click', async (el) => {
+    this.element.querySelector('.apply-one-correction').addEventListener('click', async (el) => {
       const modulePid = el.currentTarget.dataset.modulePid
       const correction = getAllCorrectionsWithExtraFields().find(c => c.module_pid === modulePid)
       const success = await patchOne(correction)
@@ -107,11 +132,11 @@ export const CorrectionsMenu = class extends FormApplication {
         rerender()
       }
     })
-    this.element.find('#setting-min-confidence').on('input', async event => {
+    this.element.querySelector('#setting-min-confidence').addEventListener('input', async event => {
       await game.settings.set(MODULE_ID, 'min-confidence', parseInt(event.target.value))
       rerender()
     })
-    this.element.find('#setting-min-fix-reliability').on('input', async event => {
+    this.element.querySelector('#setting-min-fix-reliability').addEventListener('input', async event => {
       await game.settings.set(MODULE_ID, 'min-fix-reliability', parseInt(event.target.value))
       rerender()
     })

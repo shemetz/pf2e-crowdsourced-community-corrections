@@ -4,8 +4,8 @@
   "description": "Patches pf2e compendium documents to fix community-reported errors, as 'unofficial errata'.",
   "version": "0.5.3",
   "compatibility": {
-    "minimum": "12",
-    "verified": "12"
+    "minimum": "13",
+    "verified": "13"
   },
   "esmodules": [
     "scripts/pf2e-crowdsourced-community-corrections.js"
@@ -70,8 +70,8 @@
         "type": "system",
         "manifest": "https://github.com/foundryvtt/pf2e/releases/download/latest/system.json",
         "compatibility": {
-          "minimum": "6.7.0",
-          "verified": "6.8.1"
+          "minimum": "7.0.0",
+          "verified": "7.0.0"
         }
       }
     ]
