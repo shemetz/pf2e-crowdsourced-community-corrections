@@ -704,28 +704,6 @@ export const allGeneratedCorrections = [
     "module_pid": "dread secret - duration"
   },
   {
-    "name_or_header": "Elemental Instinct",
-    "subheader": "Elemental Rage (Instinct Ability)",
-    "source": "Rage of Elements pg. 54",
-    "issue_type": "Unintended consequence",
-    "issue_description": "Granting the rage trait to impulses prevents you from using them when you're not raging",
-    "severity": 3,
-    "reasoning": "It's very unusual for abilities to be restricted this way; probably just intended to say \"you can use them while raging\"",
-    "confidence": 3,
-    "proposed_fix": "Replace \"they gain the rage trait.\" with \"They gain the rage trait while you are raging.\"",
-    "fix_reliability": 4,
-    "fix_commentary": "",
-    "discussion_link": "https://paizo.com/threads/rzs43ulk&page=3?Rage-of-Elements-Errata#101",
-    "sorting_grouping": "",
-    "module_uuid": "Compendium.pf2e.classfeatures.Item.0jSS6pgNXsC8k4o7",
-    "module_action": "FIND_AND_REPLACE",
-    "module_field_key": "system.description.value",
-    "module_pattern": "the rage trait.",
-    "module_value": "the rage trait while you are raging.",
-    "module_comment": "",
-    "module_pid": "elemental instinct - rage"
-  },
-  {
     "name_or_header": "Hydraulic Push",
     "subheader": "",
     "source": "Core Rulebook pg. 344",
