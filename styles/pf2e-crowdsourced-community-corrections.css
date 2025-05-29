@@ -1,3 +1,6 @@
+.pf2e-ccc-corrections-menu {
+    overflow: auto;
+}
 .pf2e-ccc-corrections-menu .above-table {
     display: flex;
     flex-direction: row;
