@@ -43,3 +43,8 @@ you do!
 To the best of my understanding, no special licensing is required for this module;  it does not contain any full content
 from any Paizo book.  It only contains brief snippets of content - "patches" to override bits and pieces of content in
 the official pf2e system, which is a separate package.
+
+
+## Discussion
+
+You can discuss this module in its [dedicated thread in the Pathfinder on Foundry discord server](https://discord.com/channels/880968862240239708/1189157820680114256), or open a github issue here if it's a bug or a feature request.
