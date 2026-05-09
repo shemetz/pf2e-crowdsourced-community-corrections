@@ -2,10 +2,10 @@
   "id": "pf2e-crowdsourced-community-corrections",
   "title": "Pf2e Crowdsourced Community Corrections",
   "description": "Patches pf2e compendium documents to fix community-reported errors, as 'unofficial errata'.",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "compatibility": {
     "minimum": "13",
-    "verified": "13"
+    "verified": "14"
   },
   "esmodules": [
     "scripts/pf2e-crowdsourced-community-corrections.js"
