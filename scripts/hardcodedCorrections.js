@@ -12,7 +12,6 @@ const SPELLS_THAT_NEED_AURA_TAG = [
   ['Compendium.pf2e.spells-srd.Item.My7FvAoLYgGDDBzy', 'Antimagic Field'],
   ['Compendium.pf2e.spells-srd.Item.Vw2CNwlRRKABsuZi', 'Entrancing Eyes'],
   ['Compendium.pf2e.spells-srd.Item.28kgh0JzBO6pt38C', 'Focusing Hum'],
-  ['Compendium.pf2e.spells-srd.Item.AspA30tzKCHFWRf0', 'Incendiary Aura'],
   ['Compendium.pf2e.spells-srd.Item.YDMOqndvYFu3OjA6', 'Qi Form'],
   ['Compendium.pf2e.spells-srd.Item.ou56ShiFH7GWF8hX', 'Light of Revelation'],
   ['Compendium.pf2e.spells-srd.Item.AsRd1gNRSkHDq2Jx', 'Magnetic Dominion'],
